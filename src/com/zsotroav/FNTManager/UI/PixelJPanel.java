@@ -1,4 +1,4 @@
-package com.zsotroav.FNTReader.UI;
+package com.zsotroav.FNTManager.UI;
 
 import javax.swing.*;
 import java.awt.*;

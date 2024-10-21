@@ -1,4 +1,4 @@
-package com.zsotroav.FNTReader.Font;
+package com.zsotroav.FNTManager.Font;
 
 public class Symbol {
     // This is a potentially Unicode character

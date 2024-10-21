@@ -1,4 +1,4 @@
-package com.zsotroav.FNTReader.Font;
+package com.zsotroav.FNTManager.Font;
 
 import java.util.HashMap;
 

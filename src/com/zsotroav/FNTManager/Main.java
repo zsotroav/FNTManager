@@ -1,7 +1,7 @@
-package com.zsotroav.FNTReader;
+package com.zsotroav.FNTManager;
 
-import com.zsotroav.FNTReader.UI.*;
-import com.zsotroav.FNTReader.Font.*;
+import com.zsotroav.FNTManager.UI.*;
+import com.zsotroav.FNTManager.Font.*;
 import javax.swing.*;
 
 public class Main {
