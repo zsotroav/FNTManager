@@ -61,11 +61,29 @@ public class PixelJPanel extends JPanel {
     ////////////////////////////////////////////////////////////////////////////
 
     private void createIcon() {
+        this.removeAll();
         icon = new ImageIcon(img);
         var l = new JLabel(icon);
         l.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
         this.add(l);
         this.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
+
+        this.updateUI();
+    }
+
+    public void setImg(boolean[][] arr) {
+        img = new BufferedImage(arr[0].length*step, arr.length*step, BufferedImage.TYPE_INT_ARGB);
+        gfx = img.getGraphics();
+        gfx.setColor(backgroundColor);
+        gfx.fillRect(0, 0, img.getWidth(), img.getHeight());
+        gfx.setColor(brushColor);
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (arr[i][j]) gfx.fillRect(j*step, i*step, step, step);
+            }
+        }
+
+        createIcon();
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -107,18 +125,7 @@ public class PixelJPanel extends JPanel {
         backgroundColor = background;
         brushColor = brush;
 
-        img = new BufferedImage(arr[0].length*step, arr.length*step, BufferedImage.TYPE_INT_ARGB);
-        gfx = img.getGraphics();
-        gfx.setColor(backgroundColor);
-        gfx.fillRect(0, 0, img.getWidth(), img.getHeight());
-        gfx.setColor(brushColor);
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                if (arr[i][j]) gfx.fillRect(j*step, i*step, step, step);
-            }
-        }
-
-        createIcon();
+        setImg(arr);
     }
 
     public PixelJPanel(boolean[][] arr, int step) {

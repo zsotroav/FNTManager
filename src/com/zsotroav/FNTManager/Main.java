@@ -2,33 +2,69 @@ package com.zsotroav.FNTManager;
 
 import com.zsotroav.FNTManager.UI.*;
 import com.zsotroav.FNTManager.Font.*;
+
+import java.util.ArrayList;
+
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class Main {
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.add(new JLabel("asd"));
-        frame.setVisible(true);
+    private static ArrayList<Symbol> listData;
+    private static SelectJList list;
 
-        JDialog f = new JDialog(frame, "Character editor");
-        f.setResizable(false);
+    private static PixelJPanel pixelPanel = new PixelJPanel(1,1,50);
+
+    public static class SelectUpdated implements ListSelectionListener
+    {
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            System.out.println(e.getLastIndex());
+            pixelPanel.setImg(listData.get(list.getSelectedIndex()).getPixels());
+        }
+    }
+
+    public static void main(String[] args) {
+        listData = new ArrayList<>();
+
+        JFrame frame = new JFrame();
 
         boolean[][] arr = {
-                {true, true, false},
-                {false, true, true },
-                {false, true, true },
-                {false, true, true },
+                {true, false, false},
+                {true, false, false },
+                {true, false, false },
+                {true, false, false },
+        };
+        boolean[][] arr2 = {
+                {false, true, false},
+                {false, true, false },
+                {false, true, false },
+                {false, true, false },
+        };
+        boolean[][] arr3 = {
+                {false, false, true},
+                {false, false, true },
+                {false, false, true },
+                {false, false, true },
         };
 
-        Symbol s = new Symbol(0xABCD, arr);
+        listData.add(new Symbol(0x0001, arr));
+        listData.add(new Symbol(0xFF, arr2));
+        listData.add(new Symbol(0xAA, arr3));
 
-        var p = new PixelJPanel(s.getPixels(), 50);
-        //var p = new PixelJPanel(4, 7, 40);
+        list = new SelectJList(listData, new SelectUpdated());
 
-        f.add(p);
-        f.pack();
-        f.setVisible(true);
+        JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                           list, pixelPanel);
+        sp.setOneTouchExpandable(true);
+        sp.setDividerLocation(150);
+
+        //Provide minimum sizes for the two components in the split pane
+
+        frame.add(sp);
+        frame.pack();
+        frame.setVisible(true);
 
         System.out.println("hello");
 

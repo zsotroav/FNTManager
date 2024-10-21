@@ -22,4 +22,8 @@ public class Symbol {
 
     public void setPixels(boolean[][] pixels) { this.pixels = pixels; }
     public void setPixel(int x, int y, boolean value) { pixels[y][x] = value; }
+
+    public String toString() {
+        return character + ": ";
+    }
 }
