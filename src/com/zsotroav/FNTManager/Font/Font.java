@@ -7,7 +7,7 @@ public class Font {
 
     private HashMap<Integer, Symbol> characters;
 
-    public boolean NewCharacter(int character, boolean[][] data) {
+    public boolean newCharacter(int character, boolean[][] data) {
         if (data.length != height ||
             characters.containsKey(character)) return false;
 
@@ -15,7 +15,7 @@ public class Font {
         return true;
     }
 
-    public boolean NewCharacter(int character, int width) {
+    public boolean newCharacter(int character, int width) {
         if (characters.containsKey(character)) return false;
         characters.put(character, new Symbol(character, width, height));
         return true;
