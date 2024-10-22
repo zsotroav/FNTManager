@@ -22,7 +22,7 @@ To help explain the data structure, the following valid fnt file will be used
 as an example:
 
 ```
-01 00 49 10 00 FF 11 00 01 07 20 0A 6D
+01 00 49 10 00 FF 11 00 01 07 20 00 3F
 21 00 12 22 00 01 30 23 00 01 05 24 00 07 60 90 90 90 90 90 60
 21 00 12 22 00 01 31 23 00 01 04 24 00 07 40 C0 40 40 40 40 E0
 21 00 12 22 00 01 32 23 00 01 05 24 00 07 60 90 10 20 40 80 F0
@@ -60,10 +60,10 @@ Data in block 1 is exactly 1 byte long unless noted otherwise in `(byte)`
 The file always begins with the file header containing metadata about the file:
 
 ```
-01 00 49 10 00 FF 11 00 01 07 20 0A 6D
+01 00 49 10 00 FF 11 00 01 07 20 00 3F
 -- ----- ----- -- ----- -- -- -- -----
 
-01 <L-FILE> 10 00 <ID> 11 00 <L-HEIGTH> <HEIGHT> 20 <L-DATA>
+01 <L-FILE> 10 00 <ID> 11 00 <L-HEIGHT> <HEIGHT> 20 <L-DATA>
 ```
 
 - `<L-FILE>` records the length of the fnt file with the rest of the header
