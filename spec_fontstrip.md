@@ -5,7 +5,7 @@ A font strip is made up of a black and white `.png` or `.bmp` image file and a `
 The image file is made up of three horizontal slices and only contains
 black (`#000`) and white (`#FFF`) pixels:
 
--   Character width markers (R)
+-   Character width markers (Red in graphic)
     -   H=1px
     -   White marks where the information in the character slice is valid
     -   Black pixel(s) mark the empty columns between the characters

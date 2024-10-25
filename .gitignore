@@ -32,3 +32,6 @@ bin/
 
 # FNT files - HxD auto backups
 *.fnt.bak*
+
+# pdf exports
+*.pdf
