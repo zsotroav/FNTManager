@@ -10,19 +10,19 @@ requirements) containing two views: A primary work window and a font tester
 
 ### Primary work window
 The primary work window contains most of the required tools:
-- On the left is a clickable list of available symbols in the loaded font
+- On the left is a clickable and scrollable list of available symbols in the loaded font
   - Above the list is an "Available symbols" label
-  - Bellow the list is a "Preview font" button that opens up the tester window
-- A preview of the currently selected font
+  - Below the list is a "Preview font" button that opens up the tester window
+- On the right is a preview of the currently selected font
   - Above the preview is a label showing the selected symbol's character and 
   width
-  - Bellow the preview is a button to edit/save the symbol
+  - Below the preview is a button to edit/save the symbol
 
 #### Symbol editing
-- By default the edit button is in the edit state and reads "Edit Symbol"
+- By default, the edit button is in the edit state and reads "Edit Symbol"
 - Clicking edit will make the preview clickable (and by extension the
 Symbol editable) and change the text of the button to "Save Symbol"
-- Clickin save will lock the preview, return the button's text to edit,
+- Clicking save will lock the preview, return the button's text to edit,
 and save the symbol's new data.
 - While in edit mode it is not possible to select a new symbol from the list.
 
@@ -48,7 +48,7 @@ d   │  └─ Change preview scale
     └─ About
 ```
 
-Actions for makred items:
+Actions for marked items:
 | Marker       | Action                                           |
 |--------------|--------------------------------------------------|
 | `f`          | Show Load/Save file dialog                       |
@@ -63,7 +63,7 @@ information about the application.
 
 ## Font tester window
 The font tester window consists of a large horizontal font preview and a text
-input box bellow it. The preview is a simple image that shows the typed out
+input box below it. The preview is a simple image that shows the typed-out
 text in the input box.
 
 The tester window has a similar menu strip:

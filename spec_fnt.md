@@ -51,7 +51,7 @@ Data in block 1 is exactly 1 byte long unless noted otherwise in `(byte)`
 |   `0x23`   | L of width block   | Char width     | Character width       |
 |   `0x24`   | L of symb block    | Symbol data    | Character data        |
 
-> `0x21` is a sub marker of the `0x20` marker
+> `0x21` is a sub-marker of the `0x20` marker
 
 > `0x22` - `0x24` are sub markers of `0x21` 
 
@@ -68,7 +68,7 @@ The file always begins with the file header containing metadata about the file:
 
 - `<L-FILE>` records the length of the fnt file with the rest of the header
 - `<ID>` is an ID available to use by the font's creator
-- `<HEIGHT>` is the height of the font in pixels - the height is fix for all
+- `<HEIGHT>` is the height of the font in pixels - the height is fixed for all
 characters in a single file
 - `<L-DATA>` records the length of the character data block 
 
@@ -83,7 +83,7 @@ characters in a single file
 - `<L-CHAR>` records the length of the `<CHAR>` data block
 - `<CHAR>` contains the encoded character's ASCII/Unicode representation
 - `<WIDTH>` is the width of this particular Symbol
-  - The Height is defined globally for the file, but width may be different for
+  - The Height is defined globally for the file, but the width may differ for
 every symbol in the file.
 - `<DATA>` Encodes the pixel font in a binary format
 
@@ -111,5 +111,5 @@ and using `#`=`1` and `0`=`.` to visualize it (right):
 
 If the font width is less than 8, the extra (LSB) bits are discarded. 
 
-If the width is greater than 8, multiple bytes are used in a similar manner: 
+If the width is greater than 8, multiple bytes are used similarly: 
 Two (or more) consecutive LSB discarded bytes are used for one line.
