@@ -1,5 +1,6 @@
 package com.zsotroav.FNTManager;
 
+import com.zsotroav.FNTManager.File.Importer.FNTImporter;
 import com.zsotroav.FNTManager.UI.*;
 import com.zsotroav.FNTManager.Font.*;
 
@@ -26,6 +27,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        try {
+            Font f = new FNTImporter().importFont("example.fnt");
+        } catch (Exception e) {}
         listData = new ArrayList<>();
 
         JFrame frame = new JFrame();

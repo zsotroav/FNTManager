@@ -22,4 +22,9 @@ public class Font {
     }
 
     public Symbol getCharacter(int character) { return characters.get(character); }
+
+    public Font(int height) {
+        this.height = height;
+        characters = new HashMap<>();
+    }
 }
