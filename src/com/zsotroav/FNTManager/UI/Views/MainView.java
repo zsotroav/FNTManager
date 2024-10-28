@@ -76,4 +76,10 @@ public class MainView extends JPanel {
         sp.setDividerLocation(130);
         this.add(sp);
     }
+
+    public void setBrushColor(Color c) { pixelPanel.setBrushColor(c); }
+    public Color getBrushColor() { return pixelPanel.getBrushColor(); }
+    public void setBackgroundColor(Color c) { pixelPanel.setBackgroundColor(c); }
+    public Color getBackgroundColor() { return pixelPanel.getBackgroundColor(); }
+    public void changePreviewScale(int scale) { pixelPanel.setScale(scale); }
 }

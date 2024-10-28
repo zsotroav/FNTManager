@@ -27,7 +27,26 @@ public class Main {
             System.exit(-1);
         }
 
+        menuBar.viewBrushItem.addActionListener(e -> chooseColor(frame, true));
+        menuBar.viewBackgroundItem.addActionListener(e -> chooseColor(frame, false));
+        menuBar.viewScaleItem.addActionListener(e -> {
+            try {
+                int scale = Integer.parseInt(JOptionPane.showInputDialog("Enter the new scale: "));
+                if (scale > 0 && scale < 100) mainView.changePreviewScale(scale);
+            } catch (NumberFormatException ignored) {}
+        });
+
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public static void chooseColor(JFrame parent, boolean brush) {
+        Color c =  JColorChooser.showDialog(parent,
+                        brush ? "Select a Brush color" : "Select a Background color",
+                        brush ? mainView.getBrushColor() : mainView.getBackgroundColor(),
+                        false);
+
+        if (brush) mainView.setBrushColor(c);
+        else       mainView.setBackgroundColor(c);
     }
 }

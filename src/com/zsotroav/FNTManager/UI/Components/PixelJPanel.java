@@ -25,6 +25,9 @@ public class PixelJPanel extends JPanel {
     // GETTERS
     ////////////////////////////////////////////////////////////////////////////
 
+    public Color getBrushColor() { return brushColor; }
+    public Color getBackgroundColor() { return backgroundColor; }
+
     public boolean[][] getData() {
         boolean[][] data = new boolean[img.getHeight()/step][img.getWidth()/step];
         for (int i = 0; i < img.getHeight()/step; i++) {
@@ -73,21 +76,6 @@ public class PixelJPanel extends JPanel {
         this.updateUI();
     }
 
-    public void setImg(boolean[][] arr) {
-        img = new BufferedImage(arr[0].length*step, arr.length*step, BufferedImage.TYPE_INT_ARGB);
-        gfx = img.getGraphics();
-        gfx.setColor(backgroundColor);
-        gfx.fillRect(0, 0, img.getWidth(), img.getHeight());
-        gfx.setColor(brushColor);
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                if (arr[i][j]) gfx.fillRect(j*step, i*step, step, step);
-            }
-        }
-
-        createIcon();
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // CONSTRUCTORS
     ////////////////////////////////////////////////////////////////////////////
@@ -134,4 +122,40 @@ public class PixelJPanel extends JPanel {
         this(arr, step, Color.WHITE, Color.BLACK);
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // METHODS
+    ////////////////////////////////////////////////////////////////////////////
+
+    public void setImg(boolean[][] arr) {
+        img = new BufferedImage(arr[0].length*step, arr.length*step, BufferedImage.TYPE_INT_ARGB);
+        gfx = img.getGraphics();
+        gfx.setColor(backgroundColor);
+        gfx.fillRect(0, 0, img.getWidth(), img.getHeight());
+        gfx.setColor(brushColor);
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (arr[i][j]) gfx.fillRect(j*step, i*step, step, step);
+            }
+        }
+
+        createIcon();
+    }
+
+    public void setBrushColor(Color c) {
+        var data = getData();
+        this.brushColor = c;
+        setImg(data);
+    }
+
+    public void setBackgroundColor(Color c) {
+        var data = getData();
+        this.backgroundColor = c;
+        setImg(data);
+    }
+
+    public void setScale(int scale) {
+        var data = getData();
+        this.step = scale;
+        setImg(data);
+    }
 }
