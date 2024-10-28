@@ -1,4 +1,4 @@
-package com.zsotroav.FNTManager.UI;
+package com.zsotroav.FNTManager.UI.Components;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,20 +21,22 @@ public class PixelJPanel extends JPanel {
     public void lock() { readOnly = true; }
     public void unLock() { readOnly = false; }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // GETTERS
+    ////////////////////////////////////////////////////////////////////////////
 
     public boolean[][] getData() {
-        boolean[][] data = new boolean[img.getHeight()][img.getWidth()];
-        for (int i = 0; i < img.getHeight(); i++) {
-            for (int j = 0; j < img.getWidth(); j++) {
+        boolean[][] data = new boolean[img.getHeight()/step][img.getWidth()/step];
+        for (int i = 0; i < img.getHeight()/step; i++) {
+            for (int j = 0; j < img.getWidth()/step; j++) {
                 data[i][j] = (img.getRGB(j*step, i*step) == brushColor.getRGB());
             }
         }
         return data;
     }
 
-
     ////////////////////////////////////////////////////////////////////////////
-    /// CLICK HANDLERS
+    // CLICK HANDLERS
     ////////////////////////////////////////////////////////////////////////////
 
     class CustomMouseListener implements MouseListener {
@@ -87,7 +89,7 @@ public class PixelJPanel extends JPanel {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    /// CONSTRUCTORS
+    // CONSTRUCTORS
     ////////////////////////////////////////////////////////////////////////////
 
     private PixelJPanel() {

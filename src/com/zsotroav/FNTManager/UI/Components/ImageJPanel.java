@@ -1,4 +1,4 @@
-package com.zsotroav.FNTManager.UI;
+package com.zsotroav.FNTManager.UI.Components;
 
 import javax.swing.*;
 import java.awt.*;

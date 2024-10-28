@@ -1,4 +1,4 @@
-package com.zsotroav.FNTManager.UI;
+package com.zsotroav.FNTManager.UI.Components;
 
 import com.zsotroav.FNTManager.Font.Symbol;
 
