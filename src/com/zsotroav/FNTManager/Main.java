@@ -27,35 +27,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        System.out.println(System.getProperty("user.dir"));
+        Font f = null;
         try {
-            Font f = new FNTImporter().importFont("example.fnt");
-        } catch (Exception e) {}
+            f = new FNTImporter().importFont("example.fnt");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(-1);
+        }
         listData = new ArrayList<>();
 
         JFrame frame = new JFrame();
 
-        boolean[][] arr = {
-                {true, false, false},
-                {true, false, false },
-                {true, false, false },
-                {true, false, false },
-        };
-        boolean[][] arr2 = {
-                {false, true, false},
-                {false, true, false },
-                {false, true, false },
-                {false, true, false },
-        };
-        boolean[][] arr3 = {
-                {false, false, true},
-                {false, false, true },
-                {false, false, true },
-                {false, false, true },
-        };
-
-        listData.add(new Symbol(0x0001, arr));
-        listData.add(new Symbol(0xFF, arr2));
-        listData.add(new Symbol(0xAA, arr3));
+        listData.addAll(f.getSymbols());
 
         list = new SelectJList(listData, new SelectUpdated());
 
