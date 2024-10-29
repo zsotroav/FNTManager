@@ -5,7 +5,6 @@ import com.zsotroav.FNTManager.Font.*;
 import com.zsotroav.FNTManager.UI.Components.*;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -13,7 +12,6 @@ import javax.swing.event.ListSelectionListener;
 
 public class MainView extends JPanel {
     private static Font font;
-    private static ArrayList<Symbol> listData;
     private static SelectJList list;
 
     private static JLabel rightLabel;
@@ -23,16 +21,13 @@ public class MainView extends JPanel {
 
     private static class listSelectUpdated implements ListSelectionListener {
         @Override public void valueChanged(ListSelectionEvent e) {
-            pixelPanel.setImg(listData.get(list.getSelectedIndex()).getPixels());
-            rightLabel.setText("Selected Symbol: " + listData.get(list.getSelectedIndex()));
+            pixelPanel.setImg(list.getItem(list.getSelectedIndex()).getPixels());
+            rightLabel.setText("Selected Symbol: " + list.getItem(list.getSelectedIndex()));
         }
     }
 
     public MainView(Font f) {
         font = f;
-        listData = new ArrayList<>();
-        listData.addAll(font.getSymbols());
-
         this.setLayout(new GridLayout(1,1));
 
         ///////////////////////////////////////////////////
@@ -44,7 +39,7 @@ public class MainView extends JPanel {
         leftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         leftPanel.add(leftLabel, BorderLayout.NORTH);
 
-        list = new SelectJList(listData, new listSelectUpdated());
+        list = new SelectJList(font.getSymbols(), new listSelectUpdated());
         list.setMinimumSize(new Dimension(130,100));
         leftPanel.add(list, BorderLayout.CENTER);
 
@@ -82,4 +77,12 @@ public class MainView extends JPanel {
     public void setBackgroundColor(Color c) { pixelPanel.setBackgroundColor(c); }
     public Color getBackgroundColor() { return pixelPanel.getBackgroundColor(); }
     public void changePreviewScale(int scale) { pixelPanel.setScale(scale); }
+
+    public void addSymbol(Symbol s) {
+        if (!font.addSymbol(s)) return;
+
+        list.addItem(s);
+        list.updateUI();
+    }
+    public int getFontHeight() { return font.getHeight(); }
 }

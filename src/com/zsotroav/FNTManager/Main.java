@@ -1,9 +1,10 @@
 package com.zsotroav.FNTManager;
 
 import com.zsotroav.FNTManager.File.Importer.FNTImporter;
-import com.zsotroav.FNTManager.Font.Font;
+import com.zsotroav.FNTManager.Font.Symbol;
 import com.zsotroav.FNTManager.UI.Components.MenuBar;
 import com.zsotroav.FNTManager.UI.Views.*;
+import com.zsotroav.Util.BitTurmix;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,34 @@ public class Main {
             System.exit(-1);
         }
 
+        ///////////////////////////////////////////////////
+        // Events
+
+
+        ////////////////
+        // Edit
+        menuBar.editNewItem.addActionListener(e -> {
+            try {
+                var multi = new MultiInputDialog("Symbol character: ", "Symbol width: ");
+                if (!multi.show("Create new Symbol")) return;
+
+                String chr = multi.getA();
+                if (chr.length() > 2 && chr.startsWith("0x")) {
+                    mainView.addSymbol(new Symbol(BitTurmix.byteIntToUTF8(Integer.decode(chr)),
+                                       Integer.parseInt(multi.getB()),
+                                       mainView.getFontHeight()));
+                } else if (chr.length() == 1){
+                    mainView.addSymbol(new Symbol(chr.toCharArray()[0],
+                                       Integer.parseInt(multi.getB()),
+                                       mainView.getFontHeight()));
+                }
+
+            } catch (Exception ignored) {}
+        });
+
+
+        ////////////////
+        // View
         menuBar.viewBrushItem.addActionListener(e -> chooseColor(frame, true));
         menuBar.viewBackgroundItem.addActionListener(e -> chooseColor(frame, false));
         menuBar.viewScaleItem.addActionListener(e -> {

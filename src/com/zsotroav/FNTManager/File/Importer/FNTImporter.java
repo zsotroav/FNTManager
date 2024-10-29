@@ -70,7 +70,7 @@ public class FNTImporter implements FontImporter {
         int charLen = BitTurmix.byteToUInt8(b, 2);
 
         if (charLen > 2 || charLen < 1) throw new BadFormat("Invalid Char Length");
-        int symbol = charLen == 1 ? BitTurmix.byteToUInt8(b, 3) : BitTurmix.byteToUInt16(b, 3);
+        char symbol = BitTurmix.byteToUTF8(b, 3, charLen);
 
         int off = 3 + charLen;
 

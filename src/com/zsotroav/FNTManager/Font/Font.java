@@ -5,10 +5,11 @@ import java.util.HashMap;
 
 public class Font {
     private int height;
+    private HashMap<Character, Symbol> Symbols;
 
-    private HashMap<Integer, Symbol> Symbols;
+    public int getHeight() { return height; }
 
-    public boolean newSymbol(int character, boolean[][] data) {
+    public boolean newSymbol(char character, boolean[][] data) {
         if (data.length != height ||
             Symbols.containsKey(character)) return false;
 
@@ -16,7 +17,7 @@ public class Font {
         return true;
     }
 
-    public boolean newSymbol(int character, int width) {
+    public boolean newSymbol(char character, int width) {
         if (Symbols.containsKey(character)) return false;
         Symbols.put(character, new Symbol(character, width, height));
         return true;

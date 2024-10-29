@@ -5,7 +5,7 @@ import com.zsotroav.FNTManager.Font.Symbol;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Collection;
 
 public class SelectJList extends JPanel {
     private JList<Symbol> list;
@@ -46,10 +46,13 @@ public class SelectJList extends JPanel {
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
-    public SelectJList(ArrayList<Symbol> itemList, ListSelectionListener listener) {
+    public SelectJList(Collection<Symbol> itemList, ListSelectionListener listener) {
         this();
         listModel.addAll(itemList);
 
         list.addListSelectionListener(listener);
     }
+
+    public void addItem(Symbol s) { listModel.addElement(s); }
+    public Symbol getItem(int idx) { return listModel.getElementAt(idx); }
 }
