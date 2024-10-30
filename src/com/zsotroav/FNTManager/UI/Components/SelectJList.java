@@ -21,7 +21,6 @@ public class SelectJList extends JPanel {
 
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);
-        list.setBackground(Color.GREEN);
 
         list.setSelectedIndex(0);
         list.setVisibleRowCount(5);
@@ -38,8 +37,8 @@ public class SelectJList extends JPanel {
         });
 
         scrollPane = new JScrollPane(list);
-        scrollPane.setMinimumSize(new Dimension(100, 100));
-        scrollPane.setPreferredSize(new Dimension(200, 100));
+        scrollPane.setMinimumSize(new Dimension(200, 100));
+        scrollPane.setPreferredSize(new Dimension(300, 100));
 
         this.add(scrollPane, BorderLayout.CENTER);
     }

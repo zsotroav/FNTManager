@@ -70,6 +70,8 @@ public class PixelJPanel extends JPanel {
         icon = new ImageIcon(img);
         var l = new JLabel(icon);
         l.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
+        l.addMouseListener(new CustomMouseListener());
+
         this.add(l);
         this.setPreferredSize(new Dimension(icon.getIconWidth(), icon.getIconHeight()));
 
@@ -82,10 +84,7 @@ public class PixelJPanel extends JPanel {
 
     private PixelJPanel() {
         setOpaque(true);
-        this.setBackground(Color.MAGENTA); // Debug color
-        this.setLayout(null);
-
-        this.addMouseListener(new CustomMouseListener());
+        this.setLayout(new GridBagLayout());
     }
 
     public PixelJPanel(int x, int y, int step, Color background, Color brush) {

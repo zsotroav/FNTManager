@@ -38,13 +38,14 @@ public class MainView extends JPanel {
         // LEFT PANEL
 
         JPanel leftPanel = new JPanel(new BorderLayout(5, 5));
+        leftPanel.setMinimumSize(new Dimension(150,100));
+        leftPanel.setPreferredSize(new Dimension(200,400));
 
         JLabel leftLabel = new JLabel("Available Symbols:");
         leftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         leftPanel.add(leftLabel, BorderLayout.NORTH);
 
         list = new SelectJList(font.getSymbols(), new listSelectUpdated());
-        list.setMinimumSize(new Dimension(130,100));
         leftPanel.add(list, BorderLayout.CENTER);
 
         previewButton = new JButton("Preview Font");
@@ -55,13 +56,13 @@ public class MainView extends JPanel {
         // RIGHT PANEL
 
         JPanel rightPanel = new JPanel(new BorderLayout(5, 5));
+        rightPanel.setMinimumSize(new Dimension(200,150));
+        rightPanel.setPreferredSize(new Dimension(400,400));
 
         rightLabel = new JLabel("Selected Symbol:");
         rightLabel.setHorizontalAlignment(SwingConstants.CENTER);
         rightPanel.add(rightLabel, BorderLayout.NORTH);
 
-        pixelPanel.setMinimumSize(new Dimension(130,150));
-        pixelPanel.setPreferredSize(new Dimension(150,300));
         rightPanel.add(pixelPanel, BorderLayout.CENTER);
 
         editSaveButton = new JButton("Edit Symbol");
@@ -72,7 +73,7 @@ public class MainView extends JPanel {
         // Split Pane
 
         JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);
-        sp.setDividerLocation(130);
+        sp.setDividerLocation(200);
         this.add(sp);
     }
 
