@@ -11,18 +11,20 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class MainView extends JPanel {
-    private static Font font;
-    private static SelectJList list;
+    private Font font;
+    private SelectJList list;
 
-    private static JLabel rightLabel;
-    private static JButton editSaveButton;
-    private static JButton previewButton;
-    private static PixelJPanel pixelPanel = new PixelJPanel(1,1,25);
+    private JLabel rightLabel;
+    private JButton editSaveButton;
+    private JButton previewButton;
+    private PixelJPanel pixelPanel = new PixelJPanel(1,1,25);
 
-    private static class listSelectUpdated implements ListSelectionListener {
+    public Symbol getSelectedSymbol() { return font.getCharacter(list.getSelected()); }
+
+    private class listSelectUpdated implements ListSelectionListener {
         @Override public void valueChanged(ListSelectionEvent e) {
-            pixelPanel.setImg(list.getItem(list.getSelectedIndex()).getPixels());
-            rightLabel.setText("Selected Symbol: " + list.getItem(list.getSelectedIndex()));
+            pixelPanel.setImg(getSelectedSymbol().getPixels());
+            rightLabel.setText("Selected Symbol: " + getSelectedSymbol());
         }
     }
 

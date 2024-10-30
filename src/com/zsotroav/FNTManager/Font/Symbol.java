@@ -33,9 +33,16 @@ public class Symbol {
     public void setPixels(boolean[][] pixels) { this.pixels = pixels; }
     public void setPixel(int x, int y, boolean value) { pixels[y][x] = value; }
 
-    public String toString() {
+    public String toString() { return toString(character); }
+
+    public static String toString(char character) {
         byte[] b = Character.toString(character).getBytes(StandardCharsets.UTF_8);
         int i = b.length == 1 ? BitTurmix.byteToUInt8(b) : BitTurmix.byteToUInt16(b);
         return "0x" + Integer.toHexString(i).toUpperCase() + ": " + (char)character;
+    }
+
+    public static char fromString(String s) {
+        var split = s.split(":");
+        return BitTurmix.byteIntToUTF8(Integer.decode(split[0]));
     }
 }

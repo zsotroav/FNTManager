@@ -29,7 +29,7 @@ public class Font {
         return true;
     }
 
-    public Symbol getCharacter(int character) { return Symbols.get(character); }
+    public Symbol getCharacter(char character) { return Symbols.get(character); }
 
     public Collection<Symbol> getSymbols() { return Symbols.values(); }
 

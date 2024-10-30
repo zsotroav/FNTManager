@@ -8,11 +8,9 @@ import java.awt.*;
 import java.util.Collection;
 
 public class SelectJList extends JPanel {
-    private JList<Symbol> list;
-    private DefaultListModel<Symbol> listModel;
+    private JList<Character> list;
+    private DefaultListModel<Character> listModel;
     private JScrollPane scrollPane;
-
-    public int getSelectedIndex() { return list.getSelectedIndex(); }
 
     public SelectJList() {
         this.setLayout(new BorderLayout());
@@ -32,8 +30,8 @@ public class SelectJList extends JPanel {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (renderer instanceof JLabel && value instanceof Symbol) {
-                    ((JLabel) renderer).setText((value).toString());
+                if (renderer instanceof JLabel && value instanceof Character) {
+                    ((JLabel) renderer).setText(Symbol.toString((Character) value));
                 }
                 return renderer;
             }
@@ -48,11 +46,16 @@ public class SelectJList extends JPanel {
 
     public SelectJList(Collection<Symbol> itemList, ListSelectionListener listener) {
         this();
-        listModel.addAll(itemList);
+        for (Symbol symbol : itemList) { listModel.addElement(symbol.getCharacter());}
 
         list.addListSelectionListener(listener);
     }
 
-    public void addItem(Symbol s) { listModel.addElement(s); }
-    public Symbol getItem(int idx) { return listModel.getElementAt(idx); }
+    public void addItem(Symbol s) { listModel.addElement(s.getCharacter()); }
+    public void addItem(Character c) { listModel.addElement(c); }
+    public char getItem(int idx) { return listModel.getElementAt(idx); }
+
+    public int getSelectedIndex() { return list.getSelectedIndex(); }
+    public char getSelected() { return list.getSelectedValue(); }
+
 }
