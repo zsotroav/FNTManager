@@ -53,6 +53,16 @@ public class Main {
             } catch (Exception ignored) {}
         });
 
+        menuBar.editWidthItem.addActionListener(e -> {
+            try {
+                int width = Integer.parseInt(JOptionPane.showInputDialog("Enter the new width: "));
+                Symbol curr = mainView.getSelectedSymbol();
+                mainView.font.removeCharacter(curr);
+                curr.changeWidth(width);
+                mainView.font.addSymbol(curr);
+                mainView.reDraw();
+            } catch (Exception ignored) { }
+        });
 
         ////////////////
         // View

@@ -11,7 +11,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class MainView extends JPanel {
-    private Font font;
+    public Font font;
     private SelectJList list;
 
     private JLabel rightLabel;
@@ -22,10 +22,12 @@ public class MainView extends JPanel {
     public Symbol getSelectedSymbol() { return font.getCharacter(list.getSelected()); }
 
     private class listSelectUpdated implements ListSelectionListener {
-        @Override public void valueChanged(ListSelectionEvent e) {
-            pixelPanel.setImg(getSelectedSymbol().getPixels());
-            rightLabel.setText("Selected Symbol: " + getSelectedSymbol());
-        }
+        @Override public void valueChanged(ListSelectionEvent e) { reDraw(); }
+    }
+
+    public void reDraw() {
+        pixelPanel.setImg(getSelectedSymbol().getPixels());
+        rightLabel.setText("Selected Symbol: " + getSelectedSymbol());
     }
 
     public MainView(Font f) {
