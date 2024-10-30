@@ -39,17 +39,17 @@ public class Main {
                 var multi = new MultiInputDialog("Symbol character: ", "Symbol width: ");
                 if (!multi.show("Create new Symbol")) return;
 
-                String chr = multi.getA();
-                if (chr.length() > 2 && chr.startsWith("0x")) {
-                    mainView.addSymbol(new Symbol(BitTurmix.byteIntToUTF8(Integer.decode(chr)),
-                                       Integer.parseInt(multi.getB()),
-                                       mainView.getFontHeight()));
-                } else if (chr.length() == 1){
-                    mainView.addSymbol(new Symbol(chr.toCharArray()[0],
-                                       Integer.parseInt(multi.getB()),
-                                       mainView.getFontHeight()));
-                }
+                mainView.addSymbol(new Symbol(transformInput(multi.getA()),
+                                   Integer.parseInt(multi.getB()),
+                                   mainView.getFontHeight()));
 
+            } catch (Exception ignored) {}
+        });
+
+        menuBar.editCharItem.addActionListener(e -> {
+            try {
+                mainView.mvSymbol(mainView.getSelectedSymbol().getCharacter(),
+                        transformInput(JOptionPane.showInputDialog("Enter the new character: ")));
             } catch (Exception ignored) {}
         });
 
@@ -69,7 +69,12 @@ public class Main {
         frame.setVisible(true);
     }
 
-    public static void chooseColor(JFrame parent, boolean brush) {
+    private static char transformInput(String s) {
+        if (s.length() > 2 && s.startsWith("0x")) return BitTurmix.byteIntToUTF8(Integer.decode(s));
+        return s.charAt(0);
+    }
+
+    private static void chooseColor(JFrame parent, boolean brush) {
         Color c =  JColorChooser.showDialog(parent,
                         brush ? "Select a Brush color" : "Select a Background color",
                         brush ? mainView.getBrushColor() : mainView.getBackgroundColor(),

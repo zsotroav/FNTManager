@@ -87,4 +87,14 @@ public class MainView extends JPanel {
         list.updateUI();
     }
     public int getFontHeight() { return font.getHeight(); }
+
+    public void mvSymbol(char from, char to) {
+        Symbol old = font.getCharacter(from);
+        font.removeCharacter(old);
+        old.setCharacter(to);
+        font.addSymbol(old);
+
+        list.replace(from, to);
+        list.updateUI();
+    }
 }

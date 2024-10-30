@@ -46,14 +46,17 @@ public class SelectJList extends JPanel {
 
     public SelectJList(Collection<Symbol> itemList, ListSelectionListener listener) {
         this();
-        for (Symbol symbol : itemList) { listModel.addElement(symbol.getCharacter());}
+        for (Symbol symbol : itemList) { addItem(symbol.getCharacter());}
 
         list.addListSelectionListener(listener);
     }
 
     public void addItem(Symbol s) { listModel.addElement(s.getCharacter()); }
-    public void addItem(Character c) { listModel.addElement(c); }
+    public void addItem(char c) { listModel.addElement(c); }
+
     public char getItem(int idx) { return listModel.getElementAt(idx); }
+
+    public void replace(char from, char to) { listModel.set(listModel.indexOf(from), to); }
 
     public int getSelectedIndex() { return list.getSelectedIndex(); }
     public char getSelected() { return list.getSelectedValue(); }

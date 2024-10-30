@@ -31,6 +31,9 @@ public class Font {
 
     public Symbol getCharacter(char character) { return Symbols.get(character); }
 
+    public void removeCharacter(char character) { Symbols.remove(character); }
+    public void removeCharacter(Symbol s) { Symbols.remove(s.getCharacter()); }
+
     public Collection<Symbol> getSymbols() { return Symbols.values(); }
 
     public Font(int height) {
