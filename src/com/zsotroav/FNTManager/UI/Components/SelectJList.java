@@ -12,6 +12,9 @@ public class SelectJList extends JPanel {
     private DefaultListModel<Character> listModel;
     private JScrollPane scrollPane;
 
+    public void setEnabled(boolean b) { list.setEnabled(b); }
+    public boolean isEnabled() { return list.isEnabled(); }
+
     public SelectJList() {
         this.setLayout(new BorderLayout());
 

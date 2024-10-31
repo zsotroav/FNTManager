@@ -13,13 +13,13 @@ public class PixelJPanel extends JPanel {
     private Graphics gfx;
 
     private ImageIcon icon;
-    private boolean readOnly = false;
+    private boolean readOnly = true;
 
     private Color brushColor;
     private Color backgroundColor;
 
-    public void lock() { readOnly = true; }
-    public void unLock() { readOnly = false; }
+    public void setReadOnly(boolean b) { readOnly = b; }
+    public boolean isReadOnly() { return readOnly; }
 
     ////////////////////////////////////////////////////////////////////////////
     // GETTERS

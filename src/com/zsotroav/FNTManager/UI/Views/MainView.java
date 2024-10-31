@@ -67,6 +67,26 @@ public class MainView extends JPanel {
 
         editSaveButton = new JButton("Edit Symbol");
         editSaveButton.setHorizontalAlignment(SwingConstants.CENTER);
+
+        editSaveButton.addActionListener(e -> {
+            if (pixelPanel.isReadOnly()) {
+                editSaveButton.setText("Save Symbol");
+                pixelPanel.setReadOnly(false);
+                previewButton.setEnabled(false);
+                list.setEnabled(false);
+            } else {
+                editSaveButton.setText("Edit Symbol");
+                pixelPanel.setReadOnly(true);
+                list.setEnabled(true);
+                previewButton.setEnabled(true);
+
+                Symbol s = font.getCharacter(list.getSelected());
+                font.removeCharacter(list.getSelected());
+                s.setPixels(pixelPanel.getData());
+                font.addSymbol(s);
+            }
+        });
+
         rightPanel.add(editSaveButton, BorderLayout.SOUTH);
 
         ///////////////////////////////////////////////////
