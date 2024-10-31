@@ -1,5 +1,6 @@
 package com.zsotroav.FNTManager;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.zsotroav.FNTManager.File.Importer.FNTImporter;
 import com.zsotroav.FNTManager.Font.Symbol;
 import com.zsotroav.FNTManager.UI.Components.MenuBar;
@@ -15,6 +16,7 @@ public class Main {
     private static MenuBar menuBar;
 
     public static void main(String[] args) {
+        FlatDarkLaf.setup();
         JFrame frame = new JFrame("FNTManager");
         menuBar = new MenuBar();
         frame.setJMenuBar(menuBar);

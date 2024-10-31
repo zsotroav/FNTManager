@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Main-Class: com.zsotroav.FNTManager.Main
+Class-Path: flatlaf.jar
+
+Name: src/com/zsotroav/FNTManager
+Specification-Title: "FNTManager"
+Specification-Vendor: "zsotroav".
+Implementation-Title: "com.zsotroav.FNTManager"
+Implementation-Vendor: "zsotroav"
