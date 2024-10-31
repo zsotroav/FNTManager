@@ -5,7 +5,8 @@ import com.zsotroav.FNTManager.Font.Font;
 import java.io.IOException;
 
 public interface FontImporter {
-    boolean canHandleExtension(String extension);
+    String getFileNameExtensionFormat();
+    String getUserFriendlyName();
 
     Font importFont(String filename) throws BadFormat, IOException;
 }

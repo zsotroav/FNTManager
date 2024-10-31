@@ -18,10 +18,9 @@ public class FNTImporter implements FontImporter {
 
     private DataInputStream dis;
 
-    @Override
-    public boolean canHandleExtension(String extension) {
-        return extension.equals("fnt");
-    }
+    @Override public String getFileNameExtensionFormat() { return "FNT Font File;fnt"; }
+
+    @Override public String getUserFriendlyName() { return "FNT Font"; }
 
     public void readHeader() throws IOException, BadFormat {
         /*

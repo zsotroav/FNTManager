@@ -1,28 +1,53 @@
 package com.zsotroav.FNTManager.UI.Components;
 
+import com.zsotroav.FNTManager.File.Exporter.FontExporter;
+import com.zsotroav.FNTManager.File.Importer.FontImporter;
+import com.zsotroav.Util.Tuple;
+
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.ServiceLoader;
 
 public class MenuBar extends JMenuBar {
     public JMenu newMenu, importMenu, exportMenu, editMenu, viewMenu, aboutMenu;
 
-    public JMenuItem exportFNTItem, exportFontStripItem,
-                     editNewItem, editCharItem, editWidthItem, editDeleteItem,
+    public JMenuItem editNewItem, editCharItem, editWidthItem, editDeleteItem,
                      viewBrushItem, viewBackgroundItem, viewScaleItem;
+
+    public ArrayList<Tuple<FontImporter, JMenuItem>> importItems;
+    public ArrayList<Tuple<FontExporter, JMenuItem>> exportItems;
+
 
     public MenuBar() {
         super();
+
+        importItems = new ArrayList<>();
+        exportItems = new ArrayList<>();
 
         newMenu = new JMenu("New font");
         this.add(newMenu);
 
         importMenu = new JMenu("Import");
+
+        for (FontImporter implClass : ServiceLoader.load(FontImporter.class)) {
+            JMenuItem importItem = new JMenuItem();
+            importItem.setText(implClass.getUserFriendlyName());
+            importItem.setActionCommand(implClass.getFileNameExtensionFormat());
+
+            importItems.add(new Tuple<>(implClass, importItem));
+            importMenu.add(importItem);
+        }
         this.add(importMenu);
 
         exportMenu = new JMenu("Export");
-        exportFNTItem = new JMenuItem("FNT File");
-        exportMenu.add(exportFNTItem);
-        exportFontStripItem = new JMenuItem("Font Strip Image");
-        exportMenu.add(exportFontStripItem);
+        for (FontExporter implClass : ServiceLoader.load(FontExporter.class)) {
+            JMenuItem exportItem = new JMenuItem();
+            exportItem.setText(implClass.getUserFriendlyName());
+            exportItem.setActionCommand(implClass.getFileNameExtensionFormat());
+
+            exportItems.add(new Tuple<>(implClass, exportItem));
+            exportMenu.add(exportItem);
+        }
         this.add(exportMenu);
 
         editMenu = new JMenu("Edit");
