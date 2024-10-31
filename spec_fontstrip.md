@@ -24,7 +24,7 @@ plain text (UTF-8) without any extra data.
 This example shows a x5 upscaled font strip image with an extra column showing
 RGB strips to highlight the three slices:
 
-![spec_fontstrip_x5](/assets/spec_fntstrip_x5.png)
+![spec_fontstrip_x5](spec_fontstrip_x5.png)
 
 The related text file would contain the following:
 
