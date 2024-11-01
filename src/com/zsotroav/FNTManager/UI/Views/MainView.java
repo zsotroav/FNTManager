@@ -30,6 +30,13 @@ public class MainView extends JPanel {
         rightLabel.setText("Selected Symbol: " + getSelectedSymbol());
     }
 
+    public MainView() {
+        JLabel label = new JLabel("No font loaded");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        this.setLayout(new BorderLayout());
+        this.add(label, BorderLayout.CENTER);
+    }
+
     public MainView(Font f) {
         font = f;
         this.setLayout(new GridLayout(1,1));

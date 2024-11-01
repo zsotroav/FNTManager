@@ -1,8 +1,8 @@
 package com.zsotroav.FNTManager;
 
+import com.zsotroav.FNTManager.Font.Font;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.zsotroav.FNTManager.File.Exporter.FontExporter;
-import com.zsotroav.FNTManager.File.Importer.FNTImporter;
 import com.zsotroav.FNTManager.File.Importer.FontImporter;
 import com.zsotroav.FNTManager.Font.Symbol;
 import com.zsotroav.FNTManager.UI.Components.MenuBar;
@@ -23,20 +23,50 @@ public class Main {
     public static void main(String[] args) {
         FlatDarkLaf.setup();
         JFrame frame = new JFrame("FNTManager");
+        frame.setSize(new Dimension(600, 400));
         menuBar = new MenuBar();
+        menuBar.setEnabled(false);
         frame.setJMenuBar(menuBar);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        try {
-            mainView = new MainView(new FNTImporter().importFont("example.fnt"));
-            frame.add(mainView);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.exit(-1);
-        }
+        mainView = new MainView();
+        frame.add(mainView);
 
         ///////////////////////////////////////////////////
         // Events
+
+        ////////////////
+        // Font
+        menuBar.newFontItem.addActionListener(e -> {
+            try {
+                var multi = new MultiInputDialog("Font ID: ", "Symbol heights:");
+                if (!multi.show("Create new Font")) return;
+
+                Font f = new Font(Integer.parseInt(multi.getB()));
+                frame.remove(mainView);
+                mainView = new MainView(f);
+                frame.add(mainView);
+                mainView.updateUI();
+                menuBar.setEnabled(true);
+            } catch (Exception ignored) {}
+        });
+
+        menuBar.closeFontItem.addActionListener(e -> {
+            try {
+                var op = JOptionPane.showConfirmDialog(frame,
+                        "Are you sure you want to close the font?\n" +
+                                "Make sure it was saved properly.",
+                        "Close font",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (op != JOptionPane.YES_OPTION) return;
+
+                frame.remove(mainView);
+                mainView = new MainView();
+                frame.add(mainView);
+                mainView.updateUI();
+                menuBar.setEnabled(false);
+            } catch (Exception ignored) {}
+        });
 
         ////////////////
         // Import/Export
@@ -89,7 +119,6 @@ public class Main {
             } catch (NumberFormatException ignored) {}
         });
 
-        frame.pack();
         frame.setVisible(true);
     }
 
@@ -108,6 +137,7 @@ public class Main {
                 frame.add(mainView);
                 mainView.updateUI();
             }
+            menuBar.setEnabled(true);
         } catch (Exception ignored) { }
     }
 

@@ -9,14 +9,21 @@ import java.util.ArrayList;
 import java.util.ServiceLoader;
 
 public class MenuBar extends JMenuBar {
-    public JMenu newMenu, importMenu, exportMenu, editMenu, viewMenu, aboutMenu;
+    private JMenu fontMenu, importMenu, exportMenu, editMenu, viewMenu, aboutMenu;
 
-    public JMenuItem editNewItem, editCharItem, editWidthItem, editDeleteItem,
+    public JMenuItem newFontItem, closeFontItem,
+                     editNewItem, editCharItem, editWidthItem, editDeleteItem,
                      viewBrushItem, viewBackgroundItem, viewScaleItem;
 
     public ArrayList<Tuple<FontImporter, JMenuItem>> importItems;
     public ArrayList<Tuple<FontExporter, JMenuItem>> exportItems;
 
+    public void setEnabled(boolean b) {
+        exportMenu.setEnabled(b);
+        editMenu.setEnabled(b);
+        viewMenu.setEnabled(b);
+        aboutMenu.setEnabled(b);
+    }
 
     public MenuBar() {
         super();
@@ -24,8 +31,12 @@ public class MenuBar extends JMenuBar {
         importItems = new ArrayList<>();
         exportItems = new ArrayList<>();
 
-        newMenu = new JMenu("New font");
-        this.add(newMenu);
+        fontMenu = new JMenu("Font");
+        newFontItem = new JMenuItem("New Font");
+        fontMenu.add(newFontItem);
+        closeFontItem = new JMenuItem("Close Font");
+        fontMenu.add(closeFontItem);
+        this.add(fontMenu);
 
         importMenu = new JMenu("Import");
 
