@@ -127,4 +127,8 @@ public class MainView extends JPanel {
         list.replace(from, to);
         list.updateUI();
     }
+    public void removeSelected() {
+        font.removeCharacter(list.getSelected());
+        list.removeSelected();
+    }
 }

@@ -65,4 +65,15 @@ public class SelectJList extends JPanel {
     public int getSelectedIndex() { return list.getSelectedIndex(); }
     public char getSelected() { return list.getSelectedValue(); }
 
+    public void removeSelected() {
+        var ac = list.getListSelectionListeners();
+        for (var a : ac) list.removeListSelectionListener(a);
+
+        listModel.removeElementAt(list.getSelectedIndex());
+        for (var a : ac) list.addListSelectionListener(a);
+
+        if (list.getSelectedIndex() == 0) list.setSelectedIndex(1);
+        else list.setSelectedIndex(0);
+
+    }
 }

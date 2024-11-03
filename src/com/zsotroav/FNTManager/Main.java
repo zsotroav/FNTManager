@@ -109,6 +109,19 @@ public class Main {
             } catch (Exception ignored) { }
         });
 
+        menuBar.editDeleteItem.addActionListener(e -> {
+            try {
+                if (mainView.font.size() <= 1) {
+                    JOptionPane.showConfirmDialog(frame, "Font must contain at least one symbol!",
+                            "Error deleting symbol", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                mainView.removeSelected();
+                mainView.updateUI();
+            } catch (Exception ex) { ex.printStackTrace(); }
+        });
+
         ////////////////
         // View
         menuBar.viewBrushItem.addActionListener(e -> chooseColor(frame, true));
