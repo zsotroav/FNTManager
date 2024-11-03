@@ -25,7 +25,7 @@ public class Main {
         JFrame frame = new JFrame("FNTManager");
         frame.setSize(new Dimension(600, 400));
         menuBar = new MenuBar();
-        menuBar.setEnabled(false);
+        menuBar.setEnabled(false, false);
         frame.setJMenuBar(menuBar);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -49,6 +49,7 @@ public class Main {
                 frame.add(mainView);
                 mainView.updateUI();
                 menuBar.setEnabled(true);
+                mainView.addEditSaveActionListener(ee -> menuBar.setEnabled(mainView.inEditMode()));
             } catch (Exception ignored) {}
         });
 
@@ -65,7 +66,7 @@ public class Main {
                 mainView = new MainView();
                 frame.add(mainView);
                 mainView.updateUI();
-                menuBar.setEnabled(false);
+                menuBar.setEnabled(false, false);
             } catch (Exception ignored) {}
         });
 
@@ -152,6 +153,7 @@ public class Main {
                 mainView.updateUI();
             }
             menuBar.setEnabled(true);
+            mainView.addEditSaveActionListener(ee -> menuBar.setEnabled(mainView.inEditMode()));
         } catch (Exception ignored) { }
     }
 
@@ -180,6 +182,8 @@ public class Main {
                         brush ? "Select a Brush color" : "Select a Background color",
                         brush ? mainView.getBrushColor() : mainView.getBackgroundColor(),
                         false);
+
+        if (c == null) return;
 
         if (brush) mainView.setBrushColor(c);
         else       mainView.setBackgroundColor(c);

@@ -5,6 +5,7 @@ import com.zsotroav.FNTManager.Font.*;
 import com.zsotroav.FNTManager.UI.Components.*;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -29,6 +30,9 @@ public class MainView extends JPanel {
         pixelPanel.setImg(getSelectedSymbol().getPixels());
         rightLabel.setText("Selected Symbol: " + getSelectedSymbol());
     }
+
+    public void addEditSaveActionListener(ActionListener l) { editSaveButton.addActionListener(l); }
+    public boolean inEditMode() { return !pixelPanel.isReadOnly(); }
 
     public MainView() {
         JLabel label = new JLabel("No font loaded");

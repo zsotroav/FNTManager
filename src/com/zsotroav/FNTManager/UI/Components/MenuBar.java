@@ -18,11 +18,18 @@ public class MenuBar extends JMenuBar {
     public ArrayList<Tuple<FontImporter, JMenuItem>> importItems;
     public ArrayList<Tuple<FontExporter, JMenuItem>> exportItems;
 
-    public void setEnabled(boolean b) {
+    public void setEnabled(boolean b) { setEnabled(b, true); }
+
+    public void setEnabled(boolean b, boolean all) {
         exportMenu.setEnabled(b);
         editMenu.setEnabled(b);
         viewMenu.setEnabled(b);
         aboutMenu.setEnabled(b);
+
+        if (all) {
+            fontMenu.setEnabled(b);
+            importMenu.setEnabled(b);
+        }
     }
 
     public MenuBar() {
