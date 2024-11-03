@@ -17,7 +17,7 @@ public class MainView extends JPanel {
     private JLabel rightLabel;
     private JButton editSaveButton;
     private JButton previewButton;
-    private PixelJPanel pixelPanel = new PixelJPanel(1,1,25);
+    private PixelJPanel pixelPanel = new PixelJPanel(1, 1);
 
     public Symbol getSelectedSymbol() { return font.getCharacter(list.getSelected()); }
 
@@ -37,13 +37,7 @@ public class MainView extends JPanel {
         this.add(label, BorderLayout.CENTER);
     }
 
-    public MainView(Font f) {
-        font = f;
-        this.setLayout(new GridLayout(1,1));
-
-        ///////////////////////////////////////////////////
-        // LEFT PANEL
-
+    private JPanel leftPanel() {
         JPanel leftPanel = new JPanel(new BorderLayout(5, 5));
         leftPanel.setMinimumSize(new Dimension(150,100));
         leftPanel.setPreferredSize(new Dimension(200,400));
@@ -59,9 +53,10 @@ public class MainView extends JPanel {
         previewButton.setHorizontalAlignment(SwingConstants.CENTER);
         leftPanel.add(previewButton, BorderLayout.SOUTH);
 
-        ///////////////////////////////////////////////////
-        // RIGHT PANEL
+        return leftPanel;
+    }
 
+    private JPanel rightPanel() {
         JPanel rightPanel = new JPanel(new BorderLayout(5, 5));
         rightPanel.setMinimumSize(new Dimension(200,150));
         rightPanel.setPreferredSize(new Dimension(400,400));
@@ -95,13 +90,18 @@ public class MainView extends JPanel {
         });
 
         rightPanel.add(editSaveButton, BorderLayout.SOUTH);
+        return rightPanel;
+    }
 
-        ///////////////////////////////////////////////////
-        // Split Pane
+    public MainView(Font f) {
+        font = f;
+        this.setLayout(new GridLayout(1,1));
 
-        JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);
+        JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel(), rightPanel());
         sp.setDividerLocation(200);
         this.add(sp);
+
+        reDraw();
     }
 
     public void setBrushColor(Color c) { pixelPanel.setBrushColor(c); }

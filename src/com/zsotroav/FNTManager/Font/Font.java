@@ -36,6 +36,9 @@ public class Font {
 
     public Collection<Symbol> getSymbols() { return Symbols.values(); }
 
+    public int size() { return Symbols.size(); }
+    public boolean isEmpty() { return Symbols.isEmpty(); }
+
     public Font(int height) {
         this.height = height;
         Symbols = new HashMap<>();

@@ -48,7 +48,9 @@ public class SelectJList extends JPanel {
 
     public SelectJList(Collection<Symbol> itemList, ListSelectionListener listener) {
         this();
-        for (Symbol symbol : itemList) { addItem(symbol.getCharacter());}
+        for (Symbol symbol : itemList) { addItem(symbol.getCharacter()); }
+
+        if (!itemList.isEmpty()) list.setSelectedIndex(0);
 
         list.addListSelectionListener(listener);
     }

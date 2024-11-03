@@ -43,6 +43,7 @@ public class Main {
                 if (!multi.show("Create new Font")) return;
 
                 Font f = new Font(Integer.parseInt(multi.getB()));
+                f.addSymbol(new Symbol(' ', 2, f.getHeight()));
                 frame.remove(mainView);
                 mainView = new MainView(f);
                 frame.add(mainView);

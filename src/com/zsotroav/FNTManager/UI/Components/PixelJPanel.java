@@ -101,7 +101,7 @@ public class PixelJPanel extends JPanel {
     }
 
     public PixelJPanel(int x, int y) {
-        this(x, y, 100, Color.white, Color.black);
+        this(x, y, 25, Color.white, Color.black);
     }
 
     public PixelJPanel(int x, int y, int step) {
