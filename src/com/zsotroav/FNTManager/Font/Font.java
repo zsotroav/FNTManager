@@ -41,8 +41,11 @@ public class Font {
     public int size() { return Symbols.size(); }
     public boolean isEmpty() { return Symbols.isEmpty(); }
 
-    public Font(int height) {
+    public Font(int height) { this(height, (byte)0); }
+
+    public Font(int height, byte ID) {
         this.height = height;
+        this.ID = ID;
         Symbols = new HashMap<>();
     }
 }

@@ -11,8 +11,8 @@ import java.io.IOException;
 public class FNTImporter implements FontImporter {
 
     private int height;
-    private int fontID;
     private int lenData;
+    private byte fontID;
 
     private Font font;
 
@@ -36,7 +36,7 @@ public class FNTImporter implements FontImporter {
         if (lenFile < 0) throw new BadFormat("Invalid File Length data");
 
         if (b[3] != 0x10 || b[4] != 0x00) throw new BadFormat("Invalid Font ID Block");
-        fontID = BitTurmix.byteToUInt8(b, 5);
+        fontID = b[5];
 
         if (b[6] != 0x11 || b[7] != 0x00) throw new BadFormat("Invalid Height Block");
         int Lheight = BitTurmix.byteToUInt8(b, 8);
@@ -71,6 +71,10 @@ public class FNTImporter implements FontImporter {
         if (charLen > 2 || charLen < 1) throw new BadFormat("Invalid Char Length");
         char symbol = BitTurmix.byteToUTF8(b, 3, charLen);
 
+        return getSymbol(charLen, b, symbol);
+    }
+
+    private Symbol getSymbol(int charLen, byte[] b, char symbol) {
         int off = 3 + charLen;
 
         if (b[off++] != 0x23 || b[off++] != 0x00) throw new BadFormat("Invalid Symb Width");
@@ -102,7 +106,6 @@ public class FNTImporter implements FontImporter {
                 s.setPixel(j, i, bit);
             }
         }
-
         return s;
     }
 
@@ -111,9 +114,11 @@ public class FNTImporter implements FontImporter {
          dis = new DataInputStream(new FileInputStream(filename));
 
          readHeader();
-         font = new Font(height);
+         font = new Font(height, fontID);
 
          while (lenData > 0) font.addSymbol(readSymbol());
+
+         dis.close();
 
          return font;
     }
