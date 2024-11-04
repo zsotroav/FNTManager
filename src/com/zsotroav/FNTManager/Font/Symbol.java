@@ -4,7 +4,7 @@ import com.zsotroav.Util.BitTurmix;
 
 import java.nio.charset.StandardCharsets;
 
-public class Symbol {
+public class Symbol implements Comparable<Symbol> {
     // This is a potentially Unicode character
     private char character;
 
@@ -59,5 +59,9 @@ public class Symbol {
             System.arraycopy(pixels[i], 0, newPixels[i], 0, w);
         }
         pixels = newPixels;
+    }
+
+    @Override public int compareTo(Symbol o) {
+        return Character.compare(character, o.character);
     }
 }

@@ -5,6 +5,9 @@ import com.zsotroav.FNTManager.Font.Symbol;
 import com.zsotroav.Util.BitTurmix;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FNTExporter implements FontExporter {
 
@@ -19,13 +22,19 @@ public class FNTExporter implements FontExporter {
     @Override public void exportFont(Font font, String filename) throws IOException {
         this.font = font;
 
-        if (!new File(filename).delete()) throw new IOException(filename);
+        if (!filename.endsWith(".fnt")) filename = filename + ".fnt";
+
+        var fi = new File(filename);
+        if (fi.exists() && !fi.delete()) throw new IOException("Couldn't delete file: " + filename);
 
         out = new RandomAccessFile(filename, "rw");
 
         writeHeader();
 
-        for (Symbol s : font.getSymbols())
+        List<Symbol> symbols = new ArrayList<>(font.getSymbols());
+        Collections.sort(symbols);
+
+        for (Symbol s : symbols)
             writeSymbol(s);
 
         finishHeader();
