@@ -6,8 +6,10 @@ import java.util.HashMap;
 public class Font {
     private int height;
     private HashMap<Character, Symbol> Symbols;
+    private byte ID;
 
     public int getHeight() { return height; }
+    public byte getID() { return ID; }
 
     public boolean newSymbol(char character, boolean[][] data) {
         if (data.length != height ||

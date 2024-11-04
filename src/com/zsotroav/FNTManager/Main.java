@@ -167,7 +167,7 @@ public class Main {
             int res = fileChooser.showSaveDialog(frame);
             if (res == JFileChooser.APPROVE_OPTION) {
                 String file = fileChooser.getSelectedFile().getAbsolutePath();
-                exporter.exportFont(file);
+                exporter.exportFont(mainView.font, file);
             }
         } catch (Exception ignored) { }
     }

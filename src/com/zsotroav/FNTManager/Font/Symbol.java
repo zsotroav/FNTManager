@@ -10,6 +10,9 @@ public class Symbol {
 
     private boolean[][] pixels;
 
+    public int getWidth() { return pixels[0].length; }
+    public int getHeight() { return pixels.length; }
+
     public Symbol(char character, boolean[][] pixels) {
         this.character = character;
         this.pixels = pixels;
