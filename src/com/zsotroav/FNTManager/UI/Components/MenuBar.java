@@ -2,11 +2,10 @@ package com.zsotroav.FNTManager.UI.Components;
 
 import com.zsotroav.FNTManager.File.Exporter.FontExporter;
 import com.zsotroav.FNTManager.File.Importer.FontImporter;
-import com.zsotroav.FNTManager.UI.Forms.About;
+import com.zsotroav.FNTManager.UI.Frames.AboutFrame;
 import com.zsotroav.Util.Tuple;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ServiceLoader;
 
@@ -93,7 +92,7 @@ public class MenuBar extends JMenuBar {
 
         aboutMenu = new JMenu("About");
         aboutFNTManagerItem = new JMenuItem("FNTManager");
-        aboutFNTManagerItem.addActionListener( l -> new About() );
+        aboutFNTManagerItem.addActionListener( l -> new AboutFrame() );
         aboutMenu.add(aboutFNTManagerItem);
         this.add(aboutMenu);
     }

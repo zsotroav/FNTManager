@@ -1,11 +1,11 @@
-package com.zsotroav.FNTManager.UI.Forms;
+package com.zsotroav.FNTManager.UI.Frames;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class About extends JFrame {
+public class AboutFrame extends JFrame {
 
-    public About() {
+    public AboutFrame() {
         super("About FNTManager");
         this.setLayout(new GridLayout());
 

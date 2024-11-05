@@ -15,6 +15,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
+import static com.zsotroav.FNTManager.Common.chooseColor;
+
 
 public class Main {
     private static MainView mainView;
@@ -125,8 +127,10 @@ public class Main {
 
         ////////////////
         // View
-        menuBar.viewBrushItem.addActionListener(e -> chooseColor(frame, true));
-        menuBar.viewBackgroundItem.addActionListener(e -> chooseColor(frame, false));
+        menuBar.viewBrushItem.addActionListener(e ->
+                mainView.setBrushColor(chooseColor(frame, true, mainView.getBrushColor())));
+        menuBar.viewBackgroundItem.addActionListener(e ->
+                mainView.setBackgroundColor(chooseColor(frame, false, mainView.getBackgroundColor())));
         menuBar.viewScaleItem.addActionListener(e -> {
             try {
                 int scale = Integer.parseInt(JOptionPane.showInputDialog("Enter the new scale: "));
@@ -179,17 +183,5 @@ public class Main {
     private static char transformInput(String s) {
         if (s.length() > 2 && s.startsWith("0x")) return BitTurmix.byteIntToUTF8(Integer.decode(s));
         return s.charAt(0);
-    }
-
-    private static void chooseColor(JFrame parent, boolean brush) {
-        Color c =  JColorChooser.showDialog(parent,
-                        brush ? "Select a Brush color" : "Select a Background color",
-                        brush ? mainView.getBrushColor() : mainView.getBackgroundColor(),
-                        false);
-
-        if (c == null) return;
-
-        if (brush) mainView.setBrushColor(c);
-        else       mainView.setBackgroundColor(c);
     }
 }
