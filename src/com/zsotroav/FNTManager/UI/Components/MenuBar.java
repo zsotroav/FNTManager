@@ -2,9 +2,11 @@ package com.zsotroav.FNTManager.UI.Components;
 
 import com.zsotroav.FNTManager.File.Exporter.FontExporter;
 import com.zsotroav.FNTManager.File.Importer.FontImporter;
+import com.zsotroav.FNTManager.UI.Forms.About;
 import com.zsotroav.Util.Tuple;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ServiceLoader;
 
@@ -13,7 +15,8 @@ public class MenuBar extends JMenuBar {
 
     public JMenuItem newFontItem, closeFontItem,
                      editNewItem, editCharItem, editWidthItem, editDeleteItem,
-                     viewBrushItem, viewBackgroundItem, viewScaleItem;
+                     viewBrushItem, viewBackgroundItem, viewScaleItem,
+                     aboutFNTManagerItem;
 
     public ArrayList<Tuple<FontImporter, JMenuItem>> importItems;
     public ArrayList<Tuple<FontExporter, JMenuItem>> exportItems;
@@ -24,11 +27,11 @@ public class MenuBar extends JMenuBar {
         exportMenu.setEnabled(b);
         editMenu.setEnabled(b);
         viewMenu.setEnabled(b);
-        aboutMenu.setEnabled(b);
 
         if (all) {
             fontMenu.setEnabled(b);
             importMenu.setEnabled(b);
+            aboutMenu.setEnabled(b);
         }
     }
 
@@ -89,6 +92,9 @@ public class MenuBar extends JMenuBar {
         this.add(viewMenu);
 
         aboutMenu = new JMenu("About");
+        aboutFNTManagerItem = new JMenuItem("FNTManager");
+        aboutFNTManagerItem.addActionListener( l -> new About() );
+        aboutMenu.add(aboutFNTManagerItem);
         this.add(aboutMenu);
     }
 }
