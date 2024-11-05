@@ -154,7 +154,9 @@ public class Main {
             }
             menuBar.setEnabled(true);
             mainView.addEditSaveActionListener(ee -> menuBar.setEnabled(mainView.inEditMode()));
-        } catch (Exception ignored) { }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private static void exportEvent(JFrame frame, ActionEvent e, FontExporter exporter) {
@@ -169,7 +171,9 @@ public class Main {
                 String file = fileChooser.getSelectedFile().getAbsolutePath();
                 exporter.exportFont(mainView.font, file);
             }
-        } catch (Exception ignored) { }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private static char transformInput(String s) {
