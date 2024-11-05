@@ -3,6 +3,7 @@ package com.zsotroav.FNTManager.UI.Views;
 import com.zsotroav.FNTManager.Font.Font;
 import com.zsotroav.FNTManager.Font.*;
 import com.zsotroav.FNTManager.UI.Components.*;
+import com.zsotroav.FNTManager.UI.Frames.PreviewFrame;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -55,6 +56,8 @@ public class MainView extends JPanel {
 
         previewButton = new JButton("Preview Font");
         previewButton.setHorizontalAlignment(SwingConstants.CENTER);
+        previewButton.addActionListener(l -> new PreviewFrame(font));
+
         leftPanel.add(previewButton, BorderLayout.SOUTH);
 
         return leftPanel;
