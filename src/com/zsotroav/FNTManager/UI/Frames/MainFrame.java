@@ -15,7 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-import static com.zsotroav.FNTManager.Common.chooseColor;
+import static com.zsotroav.FNTManager.Common.*;
 
 public class MainFrame extends JFrame {
     private static MainView mainView;
@@ -31,7 +31,6 @@ public class MainFrame extends JFrame {
         mainView.addEditSaveActionListener(e -> menuBar.setEnabled(mainView.inEditMode()));
     }
 
-
     public MainFrame() {
         super("FNTManager");
         setSize(new Dimension(600, 400));
@@ -39,6 +38,7 @@ public class MainFrame extends JFrame {
         menuBar.setEnabled(false, false);
         setJMenuBar(menuBar);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImages(getIcons(getClass()));
 
         mainView = new MainView();
         add(mainView);

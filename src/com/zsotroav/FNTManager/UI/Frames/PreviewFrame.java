@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static com.zsotroav.FNTManager.Common.chooseColor;
+import static com.zsotroav.FNTManager.Common.*;
 
 public class PreviewFrame extends JFrame {
     private Font font;
@@ -30,6 +30,8 @@ public class PreviewFrame extends JFrame {
 
     public PreviewFrame(Font f) {
         super("Preview font");
+        setIconImages(getIcons(getClass()));
+
         font = f;
 
         this.setLayout(new BorderLayout());

@@ -3,11 +3,14 @@ package com.zsotroav.FNTManager.UI.Frames;
 import javax.swing.*;
 import java.awt.*;
 
+import static com.zsotroav.FNTManager.Common.getIcons;
+
 public class AboutFrame extends JFrame {
 
     public AboutFrame() {
         super("About FNTManager");
         this.setLayout(new GridLayout());
+        setIconImages(getIcons(getClass()));
 
         JTextPane textArea = new JTextPane();
         textArea.setEditable(false);
