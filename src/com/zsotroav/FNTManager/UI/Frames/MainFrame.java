@@ -122,7 +122,7 @@ public class MainFrame extends JFrame {
             try {
                 int width = Integer.parseInt(JOptionPane.showInputDialog("Enter the new width: "));
                 Symbol curr = mainView.getSelectedSymbol();
-                mainView.font.removeCharacter(curr);
+                mainView.font.removeSymbol(curr);
                 curr.changeWidth(width);
                 mainView.font.addSymbol(curr);
                 mainView.reDraw();

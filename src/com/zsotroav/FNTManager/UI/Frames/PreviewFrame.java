@@ -136,7 +136,7 @@ public class PreviewFrame extends JFrame {
                 return;
             }
 
-            w += font.getCharacter(c).getWidth() + spacing;
+            w += font.getSymbol(c).getWidth() + spacing;
         }
 
         img = new BufferedImage(w*scale, font.getHeight()*scale, BufferedImage.TYPE_INT_ARGB);
@@ -146,7 +146,7 @@ public class PreviewFrame extends JFrame {
 
         w = 0;
         for (char c : txt.toCharArray()) {
-            Symbol s = font.getCharacter(c);
+            Symbol s = font.getSymbol(c);
             for (int i = 0; i < s.getWidth(); i++) {
                 for (int j = 0; j < s.getHeight(); j++) {
                     gfx.setColor(s.getPixel(i,j) ? brushColor : backgroundColor);

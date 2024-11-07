@@ -21,9 +21,9 @@ public class MainView extends JPanel {
     private JButton previewButton;
     private PixelJPanel pixelPanel = new PixelJPanel(1, 1);
 
-    public Symbol getSelectedSymbol() { return font.getCharacter(list.getSelected()); }
+    public Symbol getSelectedSymbol() { return font.getSymbol(list.getSelected()); }
 
-    private class listSelectUpdated implements ListSelectionListener {
+    private class ListSelectUpdated implements ListSelectionListener {
         @Override public void valueChanged(ListSelectionEvent e) { reDraw(); }
     }
 
@@ -51,7 +51,7 @@ public class MainView extends JPanel {
         leftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         leftPanel.add(leftLabel, BorderLayout.NORTH);
 
-        list = new SelectJList(font.getSymbols(), new listSelectUpdated());
+        list = new SelectJList(font.getSymbols(), new ListSelectUpdated());
         leftPanel.add(list, BorderLayout.CENTER);
 
         previewButton = new JButton("Preview Font");
@@ -89,8 +89,8 @@ public class MainView extends JPanel {
                 list.setEnabled(true);
                 previewButton.setEnabled(true);
 
-                Symbol s = font.getCharacter(list.getSelected());
-                font.removeCharacter(list.getSelected());
+                Symbol s = font.getSymbol(list.getSelected());
+                font.removeSymbol(list.getSelected());
                 s.setPixels(pixelPanel.getData());
                 font.addSymbol(s);
             }
@@ -126,8 +126,8 @@ public class MainView extends JPanel {
     public int getFontHeight() { return font.getHeight(); }
 
     public void mvSymbol(char from, char to) {
-        Symbol old = font.getCharacter(from);
-        font.removeCharacter(old);
+        Symbol old = font.getSymbol(from);
+        font.removeSymbol(old);
         old.setCharacter(to);
         font.addSymbol(old);
 
@@ -135,7 +135,7 @@ public class MainView extends JPanel {
         list.updateUI();
     }
     public void removeSelected() {
-        font.removeCharacter(list.getSelected());
+        font.removeSymbol(list.getSelected());
         list.removeSelected();
     }
 }

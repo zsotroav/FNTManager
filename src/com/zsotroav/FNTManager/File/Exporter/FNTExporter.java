@@ -49,7 +49,7 @@ public class FNTExporter implements FontExporter {
         byte[] header = new byte[] {
                 0x01,       // File begin
                 0x00, 0x00, // lenFile (will be filled later)
-                0x10, 0x00, font.getID(),
+                0x10, 0x00, font.getId(),
                 0x11, 0x00, // Height data
         };
         out.write(header);

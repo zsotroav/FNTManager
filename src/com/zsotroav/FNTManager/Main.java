@@ -6,8 +6,6 @@ import com.zsotroav.FNTManager.File.Importer.FontImporter;
 import com.zsotroav.FNTManager.Font.Font;
 import com.zsotroav.FNTManager.UI.Frames.MainFrame;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ServiceLoader;
 
 
@@ -54,6 +52,11 @@ public class Main {
         frame.setVisible(true);
     }
 
+    /**
+     * Automatically load font based on file type
+     * @param filename File to load from
+     * @return Loaded font or `null` if failed
+     */
     private static Font loadFont(String filename) {
         for (FontImporter imp : ServiceLoader.load(FontImporter.class)) {
             if (!imp.canLoadFile(filename)) continue;
@@ -69,6 +72,11 @@ public class Main {
         return null;
     }
 
+    /**
+     * Automatically save font based on file type
+     * @param filename File to save to
+     * @param font Font to be saved
+     */
     private static void saveFont(String filename, Font font) {
         for (FontExporter exp : ServiceLoader.load(FontExporter.class)) {
             if (!exp.canExportToFile(filename)) continue;

@@ -5,9 +5,10 @@ import com.zsotroav.Util.BitTurmix;
 import java.nio.charset.StandardCharsets;
 
 public class Symbol implements Comparable<Symbol> {
-    // This is a potentially Unicode character
+    /// Character encoded in the Symbol
     private char character;
 
+    /// Pixels of the symbol
     private boolean[][] pixels;
 
     public int getWidth() { return pixels[0].length; }
@@ -41,7 +42,7 @@ public class Symbol implements Comparable<Symbol> {
     public static String toString(char character) {
         byte[] b = Character.toString(character).getBytes(StandardCharsets.UTF_8);
         int i = b.length == 1 ? BitTurmix.byteToUInt8(b) : BitTurmix.byteToUInt16(b);
-        return "0x" + Integer.toHexString(i).toUpperCase() + ": " + (char)character;
+        return "0x" + Integer.toHexString(i).toUpperCase() + ": " + character;
     }
 
     public static char fromString(String s) {
@@ -49,8 +50,14 @@ public class Symbol implements Comparable<Symbol> {
         return BitTurmix.byteIntToUTF8(Integer.decode(split[0]));
     }
 
+    /**
+     * Change the width of the symbol. <br>
+     * Increasing the width adds empty pixels to the right. <br>
+     * Decreasing the width removes pixels from the right.
+     * @param newWidth New width of the symbol
+     */
     public void changeWidth(int newWidth) {
-        if (newWidth < 1 || newWidth > 100) return;
+        if (newWidth < 1 || newWidth > 100) throw new IndexOutOfBoundsException("Width must be between 1 and 100");
         boolean[][] newPixels = new boolean[pixels.length][newWidth];
 
         int w = Math.min(pixels[0].length, newWidth);

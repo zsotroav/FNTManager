@@ -4,49 +4,52 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Font {
-    private int height;
-    private HashMap<Character, Symbol> Symbols;
-    private byte ID;
+    /// Fixed height of the font and all symbols in it
+    private final int height;
+    /// Available symbols
+    private final HashMap<Character, Symbol> symbols;
+    /// ID of the font
+    private final byte id;
 
     public int getHeight() { return height; }
-    public byte getID() { return ID; }
+    public byte getId() { return id; }
 
     public boolean newSymbol(char character, boolean[][] data) {
         if (data.length != height ||
-            Symbols.containsKey(character)) return false;
+            symbols.containsKey(character)) return false;
 
-        Symbols.put(character, new Symbol(character, data));
+        symbols.put(character, new Symbol(character, data));
         return true;
     }
 
     public boolean newSymbol(char character, int width) {
-        if (Symbols.containsKey(character)) return false;
-        Symbols.put(character, new Symbol(character, width, height));
+        if (symbols.containsKey(character)) return false;
+        symbols.put(character, new Symbol(character, width, height));
         return true;
     }
 
     public boolean addSymbol(Symbol s) {
-        if (Symbols.containsKey(s.getCharacter())) return false;
-        Symbols.put(s.getCharacter(), s);
+        if (symbols.containsKey(s.getCharacter())) return false;
+        symbols.put(s.getCharacter(), s);
         return true;
     }
 
-    public Symbol getCharacter(char character) { return Symbols.get(character); }
-    public boolean containsSymbol(char character) { return Symbols.containsKey(character); }
+    public Symbol getSymbol(char character) { return symbols.get(character); }
+    public boolean containsSymbol(char character) { return symbols.containsKey(character); }
 
-    public void removeCharacter(char character) { Symbols.remove(character); }
-    public void removeCharacter(Symbol s) { Symbols.remove(s.getCharacter()); }
+    public void removeSymbol(char character) { symbols.remove(character); }
+    public void removeSymbol(Symbol s) { symbols.remove(s.getCharacter()); }
 
-    public Collection<Symbol> getSymbols() { return Symbols.values(); }
+    public Collection<Symbol> getSymbols() { return symbols.values(); }
 
-    public int size() { return Symbols.size(); }
-    public boolean isEmpty() { return Symbols.isEmpty(); }
+    public int size() { return symbols.size(); }
+    public boolean isEmpty() { return symbols.isEmpty(); }
 
     public Font(int height) { this(height, (byte)0); }
 
-    public Font(int height, byte ID) {
+    public Font(int height, byte id) {
         this.height = height;
-        this.ID = ID;
-        Symbols = new HashMap<>();
+        this.id = id;
+        symbols = new HashMap<>();
     }
 }
