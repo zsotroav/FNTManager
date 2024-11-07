@@ -15,6 +15,8 @@ public class FNTExporter implements FontExporter {
     private Font font;
     private int lenFile = 0;
 
+    @Override public boolean canExportToFile(String filename) { return filename.endsWith(".fnt"); }
+
     @Override public String getFileNameExtensionFormat() { return "FNT Font File;fnt"; }
 
     @Override public String getUserFriendlyName() { return "FNT Font"; }

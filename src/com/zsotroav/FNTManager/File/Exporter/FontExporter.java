@@ -5,6 +5,9 @@ import com.zsotroav.FNTManager.Font.Font;
 import java.io.IOException;
 
 public interface FontExporter {
+
+    boolean canExportToFile(String filename);
+
     String getFileNameExtensionFormat();
     String getUserFriendlyName();
 

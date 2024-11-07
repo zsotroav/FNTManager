@@ -13,6 +13,15 @@ public class FontStripImporter implements FontImporter {
 
     private char[] lookup;
 
+    @Override public boolean canLoadFile(String filename) {
+        if (!filename.endsWith(".bmp") && !filename.endsWith(".png")) return false;
+
+        String meta = filename.substring(0, filename.lastIndexOf(".")) + ".txt";
+        File metaFile = new File(meta);
+
+        return metaFile.exists();
+    }
+
     @Override public String getFileNameExtensionFormat() {
         return "Font Strip Images;png!bmp";
     }

@@ -18,6 +18,8 @@ public class FNTImporter implements FontImporter {
 
     private DataInputStream dis;
 
+    @Override public boolean canLoadFile(String filename) { return filename.endsWith(".fnt"); }
+
     @Override public String getFileNameExtensionFormat() { return "FNT Font File;fnt"; }
 
     @Override public String getUserFriendlyName() { return "FNT Font"; }
