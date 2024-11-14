@@ -49,15 +49,17 @@ public class BitTurmix {
      * @return byte array corresponding to the (u)int (dynamic size)
      */
     public static byte[] intToByteArray(int value) {
-        if (value < 256) return new byte[] {(byte)value};
-        else if (value < 65536 ) return new byte[] {
-                (byte)(value >>> 8),
-                (byte)value};
-        else if (value < 0xFFFFFF) return new byte[] {
-                (byte)(value >>> 16),
-                (byte)(value >>> 8),
-                (byte)value};
-        else return new byte[] {
+        if (value > 0) {
+            if (value < 256) return new byte[]{(byte) value};
+            else if (value <= 65535) return new byte[]{
+                    (byte) (value >>> 8),
+                    (byte) value};
+            else if (value <= 16777215) return new byte[]{
+                    (byte) (value >>> 16),
+                    (byte) (value >>> 8),
+                    (byte) value};
+        }
+        return new byte[] {
                 (byte)(value >>> 24),
                 (byte)(value >>> 16),
                 (byte)(value >>> 8),
