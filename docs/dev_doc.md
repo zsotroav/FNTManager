@@ -13,6 +13,8 @@
   - [Font and Symbol](#font-and-symbol)
   - [Importers](#importers)
   - [Exporters](#exporters)
+- [Service Loaders](#service-loaders)
+- [Command Line Interface](#command-line-interface)
 - [UI Components](#ui-components)
   - [MainFrame and View overview](#mainframe-and-view-overview)
   - [MainFrame](#mainframe)
@@ -148,7 +150,6 @@ class FontStripImporter {
 ```
 
 ### Exporters
-
 > Defined in `com.zsotroav.FNTManager.File.Exporter`
 
 ```mermaid
@@ -189,6 +190,22 @@ class FontStripExporter {
     +exportFont(Font font, String filename)
 }
 
+```
+
+## Service Loaders
+The Font Importers and Exporters are dynamically loaded via Service Loaders. As such, available menu items in the menu bar and cli options are generated during runtime. This requires the importer/exporter classes to implement the appropriate interface and be noted in the service provider configuration files (/META-INF/services) properly.
+
+## Command Line Interface
+The application provides a basic CLI interface implemented in `main.java`
+
+CLI Options:
+```
+-c <in> <out>   --convert
+                Convert font without GUI
+-f <file>       --file <file>
+                Load file into GUI
+-h              --help
+                Show this help
 ```
 
 ## UI Components
