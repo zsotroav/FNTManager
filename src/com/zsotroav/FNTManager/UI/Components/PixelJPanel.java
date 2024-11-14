@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
+/**
+ * Click-to edit pixel graphical display panel
+ */
 public class PixelJPanel extends JPanel {
     private int step;
 
@@ -28,6 +31,10 @@ public class PixelJPanel extends JPanel {
     public Color getBrushColor() { return brushColor; }
     public Color getBackgroundColor() { return backgroundColor; }
 
+    /**
+     * Get the binary representation of the data
+     * @return HEIGHT*WIDTH sized boolean array
+     */
     public boolean[][] getData() {
         boolean[][] data = new boolean[img.getHeight()/step][img.getWidth()/step];
         for (int i = 0; i < img.getHeight()/step; i++) {
@@ -44,7 +51,6 @@ public class PixelJPanel extends JPanel {
 
     class CustomMouseListener implements MouseListener {
         public void mouseClicked(MouseEvent e) {
-            System.out.println("mouseClicked: X=" + e.getX() + ", Y=" + e.getY());
             togglePx(e.getX(), e.getY());
         }
         public void mousePressed(MouseEvent e)  { /* Unused */ }
@@ -53,6 +59,11 @@ public class PixelJPanel extends JPanel {
         public void mouseExited(MouseEvent e)   { /* Unused */ }
     }
 
+    /**
+     * Toggle a specififc pixel of the image
+     * @param x X (horizontal) coordinate
+     * @param y Y (vertical) coordinate
+     */
     private void togglePx(int x, int y) {
         if (readOnly) return;
 
@@ -65,6 +76,9 @@ public class PixelJPanel extends JPanel {
 
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Generate the displayed image icon
+     */
     private void createIcon() {
         this.removeAll();
         icon = new ImageIcon(img);
@@ -82,11 +96,22 @@ public class PixelJPanel extends JPanel {
     // CONSTRUCTORS
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Basic internal setup
+     */
     private PixelJPanel() {
         setOpaque(true);
         this.setLayout(new GridBagLayout());
     }
 
+    /**
+     * Generate a PixelJPanel
+     * @param x width
+     * @param y height
+     * @param step scale step (actual pixel is step*step)
+     * @param background background color
+     * @param brush foreground/brush color
+     */
     public PixelJPanel(int x, int y, int step, Color background, Color brush) {
         this();
         backgroundColor = background;
@@ -100,14 +125,32 @@ public class PixelJPanel extends JPanel {
         createIcon();
     }
 
+    /**
+     * Generate a PixelJPanel with default values (scale=25, color=BW)
+     * @param x width
+     * @param y height
+     */
     public PixelJPanel(int x, int y) {
         this(x, y, 25, Color.white, Color.black);
     }
 
+    /**
+     * Generate a PixelJPanel with default values (color=BW)
+     * @param x width
+     * @param y height
+     * @param step scale step (actual pixel is step*step)
+     */
     public PixelJPanel(int x, int y, int step) {
         this(x, y, step, Color.white, Color.black);
     }
 
+    /**
+     * Generate a PixelJPanel with the provided data
+     * @param arr boolean array of initial values
+     * @param step scale step (actual pixel is step*step)
+     * @param background background color
+     * @param brush foreground/brush color
+     */
     public PixelJPanel(boolean[][] arr, int step, Color background, Color brush) {
         this();
         this.step = step;
@@ -116,7 +159,11 @@ public class PixelJPanel extends JPanel {
 
         setImg(arr);
     }
-
+/**
+     * Generate a PixelJPanel with the provided data and default values (color=BW)
+     * @param arr boolean array of initial values
+     * @param step scale step (actual pixel is step*step)
+     */
     public PixelJPanel(boolean[][] arr, int step) {
         this(arr, step, Color.WHITE, Color.BLACK);
     }
@@ -125,6 +172,10 @@ public class PixelJPanel extends JPanel {
     // METHODS
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Set the image data for the panel
+     * @param arr boolean array of the values
+     */
     public void setImg(boolean[][] arr) {
         img = new BufferedImage(arr[0].length*step, arr.length*step, BufferedImage.TYPE_INT_ARGB);
         gfx = img.getGraphics();

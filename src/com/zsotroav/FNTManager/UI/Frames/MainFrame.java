@@ -12,15 +12,21 @@ import com.zsotroav.Util.BitTurmix;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 
 import static com.zsotroav.FNTManager.Common.*;
 
+/**
+ * The main application JFrame 
+ */
 public class MainFrame extends JFrame {
     private static MainView mainView;
     private static MenuBar menuBar;
 
+    /**
+     * Init the frame with a loaded font
+     * @param f font to use
+     */
     public MainFrame(Font f) {
         this();
         remove(mainView);
@@ -31,6 +37,9 @@ public class MainFrame extends JFrame {
         mainView.addEditSaveActionListener(e -> menuBar.setEnabled(mainView.inEditMode()));
     }
 
+    /**
+     * Init the frame without a pre-loaded font
+     */
     public MainFrame() {
         super("FNTManager");
         setSize(new Dimension(600, 400));
@@ -88,10 +97,10 @@ public class MainFrame extends JFrame {
         ////////////////
         // Import/Export
         for (var item : menuBar.importItems)
-            item.y.addActionListener(e -> importEvent(this, e, item.x));
+            item.y.addActionListener(e -> importEvent(this, item.x));
 
         for (var item : menuBar.exportItems)
-            item.y.addActionListener(e -> exportEvent(this, e, item.x));
+            item.y.addActionListener(e -> exportEvent(this, item.x));
 
         ////////////////
         // Edit
@@ -111,8 +120,9 @@ public class MainFrame extends JFrame {
 
         menuBar.editCharItem.addActionListener(e -> {
             try {
-                mainView.mvSymbol(mainView.getSelectedSymbol().getCharacter(),
+                boolean s = mainView.mvSymbol(mainView.getSelectedSymbol().getCharacter(),
                         transformInput(JOptionPane.showInputDialog("Enter the new character: ")));
+                if (!s) JOptionPane.showMessageDialog(this, "Failed to move symbol", "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -162,11 +172,16 @@ public class MainFrame extends JFrame {
         });
     }
 
-    private static void importEvent(JFrame frame, ActionEvent e, FontImporter importer) {
+    /**
+     * Handle importing of a font
+     * @param frame parent frame for the JFileChooser
+     * @param importer the FontImporter to use
+     */
+    private static void importEvent(JFrame frame, FontImporter importer) {
         try {
             JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            String[] par = e.getActionCommand().split(";");
+            String[] par = importer.getFileNameExtensionFormat().split(";");
 
             fileChooser.setFileFilter(new FileNameExtensionFilter(par[0], par[1].split("!")));
             int res = fileChooser.showOpenDialog(frame);
@@ -184,11 +199,16 @@ public class MainFrame extends JFrame {
         }
     }
 
-    private static void exportEvent(JFrame frame, ActionEvent e, FontExporter exporter) {
+    /**
+     * Handle exporting of a font
+     * @param frame parent frame for the JFileChooser
+     * @param exporter the FontExporter to use
+     */
+    private static void exportEvent(JFrame frame, FontExporter exporter) {
         try {
             JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            String[] par = e.getActionCommand().split(";");
+            String[] par = exporter.getFileNameExtensionFormat().split(";");
 
             fileChooser.setFileFilter(new FileNameExtensionFilter(par[0], par[1].split("!")));
             int res = fileChooser.showSaveDialog(frame);
@@ -201,6 +221,11 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Transform the string input for character selection
+     * @param s Character string in either Unicode Code Points (prefixed with 0x) or character literals
+     * @return parsed character
+     */
     private static char transformInput(String s) {
         if (s.length() > 2 && s.startsWith("0x")) return BitTurmix.byteIntToUTF8(Integer.decode(s));
         return s.charAt(0);
