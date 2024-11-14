@@ -9,14 +9,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class SelectJList extends JPanel {
-    private JList<Character> list;
-    private DefaultListModel<Character> listModel;
+/**
+ * Scrollable click-to-select JList
+ */
+public class SelectJList<T extends Comparable<T>> extends JPanel {
+    private JList<T> list;
+    private DefaultListModel<T> listModel;
     private JScrollPane scrollPane;
 
-    public void setEnabled(boolean b) { list.setEnabled(b); }
-    public boolean isEnabled() { return list.isEnabled(); }
+    @Override public void setEnabled(boolean b) { list.setEnabled(b); }
+    @Override public boolean isEnabled() { return list.isEnabled(); }
 
+    /**
+     * Initialize with an empty list
+     */
     public SelectJList() {
         this.setLayout(new BorderLayout());
 
@@ -48,44 +54,59 @@ public class SelectJList extends JPanel {
         this.add(scrollPane, BorderLayout.CENTER);
     }
 
-    public SelectJList(Collection<Symbol> itemList, ListSelectionListener listener) {
+    /**
+     * Initialize with a basic list
+     * @param itemList List to use
+     * @param listener Selection listener to use
+     */
+    public SelectJList(Collection<T> itemList, ListSelectionListener listener) {
         this();
-        for (Symbol symbol : itemList) { addItem(symbol.getCharacter()); }
+        for (T t : itemList) { addItem(t); }
 
         if (!itemList.isEmpty()) list.setSelectedIndex(0);
 
         list.addListSelectionListener(listener);
     }
 
-    public void addItem(Symbol s) { addItem(s.getCharacter()); }
-    public void addItem(char c) { listModel.addElement(c); sortModel(listModel); }
+    public void addItem(T c) { listModel.addElement(c); sortModel(listModel); }
 
-    public void sortModel(DefaultListModel<Character> model) {
-        ArrayList<Character> list = new ArrayList<>();
+    public void sortModel(DefaultListModel<T> model) {
+        ArrayList<T> l = new ArrayList<>();
         for (int i = 0; i < model.size(); i++) {
-            list.add(model.get(i));
+            l.add(model.get(i));
         }
-        Collections.sort(list);
+        Collections.sort(l);
         model.removeAllElements();
-        for (Character s : list) {
+        for (T s : l) {
             model.addElement(s);
         }
     }
 
-    public char getItem(int idx) { return listModel.getElementAt(idx); }
+    public T getItem(int idx) { return listModel.getElementAt(idx); }
 
-    public void replace(char from, char to) { listModel.set(listModel.indexOf(from), to); }
+    /**
+     * Replace the {@code to} character with the {@code from} character
+     * @param from Item to be added
+     * @param to The item to be replaced
+     */
+    public void replace(T from, T to) { listModel.set(listModel.indexOf(from), to); }
 
     public int getSelectedIndex() { return list.getSelectedIndex(); }
-    public char getSelected() { return list.getSelectedValue(); }
+    public T getSelected() { return list.getSelectedValue(); }
 
+    /**
+     * Remove the currently selected item from the list
+     */
     public void removeSelected() {
+        // To not have an absolute mess with the action listeners triggering, we temp remove them
         var ac = list.getListSelectionListeners();
         for (var a : ac) list.removeListSelectionListener(a);
 
         listModel.removeElementAt(list.getSelectedIndex());
+
         for (var a : ac) list.addListSelectionListener(a);
 
+        // Set a proper id for selection and trigger the listeners with this
         if (list.getSelectedIndex() == 0) list.setSelectedIndex(1);
         else list.setSelectedIndex(0);
 

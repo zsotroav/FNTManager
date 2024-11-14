@@ -14,7 +14,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class MainView extends JPanel {
     public Font font;
-    private SelectJList list;
+    private SelectJList<Character> list;
 
     private JLabel rightLabel;
     private JButton editSaveButton;
@@ -51,7 +51,10 @@ public class MainView extends JPanel {
         leftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         leftPanel.add(leftLabel, BorderLayout.NORTH);
 
-        list = new SelectJList(font.getSymbols(), new ListSelectUpdated());
+        ArrayList<Character> chars = new ArrayList<>();
+        for (Symbol s : font.getSymbols()) chars.add(s.getCharacter());
+
+        list = new SelectJList<>(chars, new ListSelectUpdated());
         leftPanel.add(list, BorderLayout.CENTER);
 
         previewButton = new JButton("Preview Font");
@@ -120,7 +123,7 @@ public class MainView extends JPanel {
     public void addSymbol(Symbol s) {
         if (!font.addSymbol(s)) return;
 
-        list.addItem(s);
+        list.addItem(s.getCharacter());
         list.updateUI();
     }
     public int getFontHeight() { return font.getHeight(); }
