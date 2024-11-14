@@ -24,10 +24,12 @@
 - [Utility classes in `com.zsotroav.util`](#utility-classes-in-comzsotroavutil)
   - [BitTurmix](#bitturmix)
   - [Tuple](#tuple)
+- [Function Index](#function-index)
 
 <!-- /code_chunk_output -->
 
 
+<div class="page"></div>
 
 ## Legal & License
 
@@ -709,3 +711,68 @@ Generic Tuple implementation
 * `<Y>` — Second type stored
 
 <!-- END DOC-COMMENT -->
+
+<div class="page"></div>
+
+## Function Index
+<!-- @import "[EXTOC]" {cmd="toc" depthFrom=3 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+- [MainFrame](#mainframe)
+  - [`public class MainFrame extends JFrame`](#public-class-mainframe-extends-jframe)
+  - [`public MainFrame(Font f)`](#public-mainframefont-f)
+  - [`public MainFrame()`](#public-mainframe)
+  - [`private void importEvent(JFrame frame, FontImporter importer)`](#private-void-importeventjframe-frame-fontimporter-importer)
+  - [`private void exportEvent(JFrame frame, FontExporter exporter)`](#private-void-exporteventjframe-frame-fontexporter-exporter)
+  - [`private static char transformInput(String s)`](#private-static-char-transforminputstring-s)
+- [MainView](#mainview)
+  - [`public Symbol getSelectedSymbol()`](#public-symbol-getselectedsymbol)
+  - [`public void reDraw()`](#public-void-redraw)
+  - [`public void addEditSaveActionListener(ActionListener l)`](#public-void-addeditsaveactionlisteneractionlistener-l)
+  - [`public boolean inEditMode()`](#public-boolean-ineditmode)
+  - [`public MainView()`](#public-mainview)
+  - [`private JPanel leftPanel()`](#private-jpanel-leftpanel)
+  - [`private JPanel rightPanel()`](#private-jpanel-rightpanel)
+  - [`public MainView(Font f)`](#public-mainviewfont-f)
+  - [`public void addSymbol(Symbol s)`](#public-void-addsymbolsymbol-s)
+  - [`public boolean mvSymbol(char from, char to)`](#public-boolean-mvsymbolchar-from-char-to)
+  - [`public void removeSelected()`](#public-void-removeselected)
+- [SelectJList](#selectjlist)
+  - [`public class SelectJList<T extends Comparable<T>> extends JPanel`](#public-class-selectjlistt-extends-comparablet-extends-jpanel)
+  - [`public SelectJList()`](#public-selectjlist)
+  - [`public SelectJList(Collection<T> itemList, ListSelectionListener listener)`](#public-selectjlistcollectiont-itemlist-listselectionlistener-listener)
+  - [`public void replace(T from, T to)`](#public-void-replacet-from-t-to)
+  - [`public void removeSelected()`](#public-void-removeselected-1)
+- [PixelJPanel](#pixeljpanel)
+  - [`public class PixelJPanel extends JPanel`](#public-class-pixeljpanel-extends-jpanel)
+  - [`public boolean[][] getData()`](#public-boolean-getdata)
+  - [`public void togglePx(int x, int y)`](#public-void-togglepxint-x-int-y)
+  - [`private void createIcon()`](#private-void-createicon)
+  - [`private PixelJPanel()`](#private-pixeljpanel)
+  - [`public PixelJPanel(int x, int y, int step, Color background, Color brush)`](#public-pixeljpanelint-x-int-y-int-step-color-background-color-brush)
+  - [`public PixelJPanel(int x, int y)`](#public-pixeljpanelint-x-int-y)
+  - [`public PixelJPanel(int x, int y, int step)`](#public-pixeljpanelint-x-int-y-int-step)
+  - [`public PixelJPanel(boolean[][] arr, int step, Color background, Color brush)`](#public-pixeljpanelboolean-arr-int-step-color-background-color-brush)
+  - [`public PixelJPanel(boolean[][] arr, int step)`](#public-pixeljpanelboolean-arr-int-step)
+  - [`public void setImg(boolean[][] arr)`](#public-void-setimgboolean-arr)
+- [Multi Input Dialog](#multi-input-dialog)
+  - [`public class MultiInputDialog`](#public-class-multiinputdialog)
+  - [`public MultiInputDialog(String A, String B)`](#public-multiinputdialogstring-a-string-b)
+  - [`public boolean show(String title)`](#public-boolean-showstring-title)
+  - [`public String getA()`](#public-string-geta)
+  - [`public String getB()`](#public-string-getb)
+- [BitTurmix](#bitturmix)
+  - [`public static int byteToUInt16(byte[] bytes, int index)`](#public-static-int-bytetouint16byte-bytes-int-index)
+  - [`public static int byteToUInt16(byte[] bytes)`](#public-static-int-bytetouint16byte-bytes)
+  - [`public static int byteToUInt8(byte[] bytes, int index)`](#public-static-int-bytetouint8byte-bytes-int-index)
+  - [`public static int byteToUInt8(byte[] bytes)`](#public-static-int-bytetouint8byte-bytes)
+  - [`public static byte[] intToByteArray(int value)`](#public-static-byte-inttobytearrayint-value)
+  - [`public static byte[] intToByteArray2(int value)`](#public-static-byte-inttobytearray2int-value)
+  - [`public static char byteToUTF8(byte[] bytes, int index, int len)`](#public-static-char-bytetoutf8byte-bytes-int-index-int-len)
+  - [`public static char byteIntToUTF8(int data)`](#public-static-char-byteinttoutf8int-data)
+  - [`public static byte[] UTF8ToByteArray(char c)`](#public-static-byte-utf8tobytearraychar-c)
+  - [`public static byte[] boolArrayToByteArray(boolean[] data)`](#public-static-byte-boolarraytobytearrayboolean-data)
+- [Tuple](#tuple)
+  - [`public class Tuple<X, Y>`](#public-class-tuplex-y)
+
+<!-- /code_chunk_output -->
+
