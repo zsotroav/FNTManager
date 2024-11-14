@@ -24,7 +24,7 @@ public class FNTImporter implements FontImporter {
 
     @Override public String getUserFriendlyName() { return "FNT Font"; }
 
-    public void readHeader() throws IOException, BadFormat {
+    private void readHeader() throws IOException, BadFormat {
         /*
          * 01 00 49 10 00 FF 11 00 01 07 20 00 3F
          * -- ----- ----- -- ----- -- -- -- -----
@@ -54,7 +54,7 @@ public class FNTImporter implements FontImporter {
         if (lenFile - lenData - Lheight != 9) throw new BadFormat("Invalid Data Length");
     }
 
-    public Symbol readSymbol() throws IOException, BadFormat {
+    private Symbol readSymbol() throws IOException, BadFormat {
         byte[] b = new byte[3];
         if (dis.read(b, 0, 3) < 3) throw new IOException("Unexpected EOF :: Symb");
 

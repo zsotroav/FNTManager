@@ -78,7 +78,7 @@ public class FontStripImporter implements FontImporter {
         return font;
     }
 
-    static BufferedImage loadImage(File f) throws IOException {
+    private static BufferedImage loadImage(File f) throws IOException {
         byte[] bytes = Files.readAllBytes(f.toPath());
         try (InputStream is = new ByteArrayInputStream(bytes))
         {

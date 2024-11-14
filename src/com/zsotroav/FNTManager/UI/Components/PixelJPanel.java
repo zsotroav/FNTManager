@@ -64,7 +64,7 @@ public class PixelJPanel extends JPanel {
      * @param x X (horizontal) coordinate
      * @param y Y (vertical) coordinate
      */
-    private void togglePx(int x, int y) {
+    public void togglePx(int x, int y) {
         if (readOnly) return;
 
         gfx.setColor( (img.getRGB(x, y) == brushColor.getRGB()) ? backgroundColor : brushColor);

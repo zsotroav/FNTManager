@@ -15,8 +15,7 @@ import java.util.List;
 
 public class FontStripExporter implements FontExporter {
 
-    @Override
-    public boolean canExportToFile(String filename) {
+    @Override public boolean canExportToFile(String filename) {
         return filename.endsWith(".bmp") || filename.endsWith(".png");
     }
 

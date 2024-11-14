@@ -20,8 +20,8 @@ import static com.zsotroav.FNTManager.Common.*;
  * The main application JFrame 
  */
 public class MainFrame extends JFrame {
-    private static MainView mainView;
-    private static MenuBar menuBar;
+    private MainView mainView;
+    private MenuBar menuBar;
 
     /**
      * Init the frame with a loaded font
@@ -177,7 +177,7 @@ public class MainFrame extends JFrame {
      * @param frame parent frame for the JFileChooser
      * @param importer the FontImporter to use
      */
-    private static void importEvent(JFrame frame, FontImporter importer) {
+    private void importEvent(JFrame frame, FontImporter importer) {
         try {
             JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -204,7 +204,7 @@ public class MainFrame extends JFrame {
      * @param frame parent frame for the JFileChooser
      * @param exporter the FontExporter to use
      */
-    private static void exportEvent(JFrame frame, FontExporter exporter) {
+    private void exportEvent(JFrame frame, FontExporter exporter) {
         try {
             JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir")));
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
