@@ -29,7 +29,8 @@ public class Font {
     }
 
     public boolean addSymbol(Symbol s) {
-        if (symbols.containsKey(s.getCharacter())) return false;
+        if (symbols.containsKey(s.getCharacter()) ||
+            s.getHeight() != height) return false;
         symbols.put(s.getCharacter(), s);
         return true;
     }
