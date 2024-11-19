@@ -83,7 +83,7 @@ public class Main {
             try {
                 exp.exportFont(font, filename);
             } catch (Exception e) {
-                System.out.println("Failed to load font!\n" + e.getMessage());
+                System.out.println("Failed to save font!\n" + e.getMessage());
                 System.exit(-1);
             }
         }

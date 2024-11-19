@@ -28,6 +28,8 @@ public class FontStripExporter implements FontExporter {
     }
 
     @Override public void exportFont(Font font, String filename) throws IOException {
+        if (!filename.endsWith(".png") && !filename.endsWith(".bmp")) filename = filename + ".png";
+
         List<Symbol> symbols = new ArrayList<>(font.getSymbols());
         Collections.sort(symbols);
 

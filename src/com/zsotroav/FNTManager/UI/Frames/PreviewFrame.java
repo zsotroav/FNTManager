@@ -22,7 +22,7 @@ public class PreviewFrame extends JFrame {
     private BufferedImage img;
     private JLabel imageLabel;
 
-    private int spacing = 1;
+    private int spacing = 0;
     private int scale = 15;
 
     private Color brushColor = Color.BLACK;
@@ -85,7 +85,7 @@ public class PreviewFrame extends JFrame {
         viewSpaceItem.addActionListener(e ->{
             try {
                 int i = Integer.parseInt(JOptionPane.showInputDialog("Enter the new spacing: "));
-                if (i > 0 && i < 100) spacing = i;
+                if (i >= 0 && i < 100) spacing = i;
                 textChanged();
             } catch (NumberFormatException ignored) {}
         });
