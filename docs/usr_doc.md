@@ -19,8 +19,8 @@
 ## Starting the app
 
 To use the app, either launch it:
-- directly
-- with java `java -jar FNTManager.jar`
+- directly as an application
+- with java or javaw `java -jar FNTManager.jar`
 - with CLI options `java -jar FNTManager.jar <options>`
 
 ## CLI Options
@@ -57,21 +57,29 @@ menu strip
    └─ FNTManager
 ```
 
-The Import and Export menus are populated automatically with whatever importers/exporters are available in the program's distribution.
+The Import and Export menus are populated automatically with whatever
+importers/exporters are available in the program's distribution.
 
-> **Important:** You must save the file by Exporting, as the program only interfaces with the font files when explicitly asked to by the user.
+> **Important:** You must save the file by Exporting, as the program only
+interfaces with the font files when explicitly asked to by the user.
 
 ### Main View
-When the program starts, the main view is shown. If no font is loaded, an information message is displayed. Load a font through the UI (or via the CLI options before opening) to access the full main view.
+When the program starts, the main view is shown. If no font is loaded, an
+information message is displayed. Load a font through the UI (or via the CLI
+options before opening) to access the full main view.
 
 The main view consists of two halves:
 - On the left is a list of the available symbols
-  - The preview font button on the bottom allows you to load a preview window where you can test out the font by writing text with it.
+  - The preview font button on the bottom allows you to load a preview window
+  where you can test out the font by writing text with it.
 - On the right is a preview of the selected symbol
-  - Below the preview is the edit/save button. Click it to change bewteen preview and editing mode. Saving the edit will only affect the loaded font; to save to a file, you must export the loaded font.
+  - Below the preview is the edit/save button. Click it to change bewteen
+  preview and editing mode. Saving the edit will only affect the loaded font;
+  to save to a file, you must export the loaded font.
 
 ### Preview window
-In the preview window, you can type free text in the bottom text input, and the rendered text will appear on the top as you type.
+In the preview window, you can type free text in the bottom text input, and the
+rendered text will appear on the top as you type.
 
 
 There are a few self-explanatory options available in the menu strip on the top:

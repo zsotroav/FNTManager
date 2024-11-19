@@ -2,11 +2,13 @@
 
 The FNT file format is a binary pixel font file format.
 
+## Table of Contents
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
+- [Table of Contents](#table-of-contents)
 - [Example data](#example-data)
 - [Understanding the format](#understanding-the-format)
   - [Markers](#markers)
@@ -34,9 +36,9 @@ This font contains three characters: `0x30` (0), `0x31` (1), and `0x32` (2)
 
 ### Markers
 
-Markers are used throughout the file. They are always followed by `0x00` (except
-the `0x01` begin marker) and one or two blocks. When two blocks are used, the
-first block is always the length of the second block.
+Markers are used throughout the file. They are always followed by `0x00` 
+(except the `0x01` begin marker) and one or two blocks. When two blocks are
+used, the first block is always the length of the second block.
 
 Data in block 1 is exactly 1 byte long unless noted otherwise in `(byte)`
 
